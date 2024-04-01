@@ -1,0 +1,161 @@
+.signup {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+.login-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.signup-wrapper {
+    position: absolute;
+    top: calc(50vh - (500px / 2));
+    left: calc(50vw - (480px / 2));
+    width: 480px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(223 calc( 1 * 6.7%) 20.6% / 1);
+    text-align: center;
+    padding: 32px;
+    font-size: 18px;
+    box-shadow: 0 2px 10px 0 hsl(0 calc( 1 * 0%) 0% / 0.2);
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: hsl(214 calc( 1 * 8.1%) 61.2% / 1);
+}
+
+/* .signup-wrapper > div {
+    opacity: 1;
+    transform: scale(1) translateY(0px) translateZ(0px);
+    width: 784px;
+    font-size: 18px;
+    border-radius: 5px;
+    box-sizing: border-box;
+} */
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: start;
+    width: 550px;
+}
+
+.signup-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.signup-header > h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: hsl(220 calc( 1 * 13%) 95.5% / 1);
+}
+
+.signup-form {
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.signup-email,
+.signup-username,
+.signup-password {
+    margin-bottom: 20px;
+}
+
+.signup-email > label,
+.signup-username > label,
+.signup-password > label {
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    color: hsl(215 calc( 1 * 8.8%) 73.3% / 1);
+    margin-bottom: 8px;
+}
+
+.signup-input {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border-radius: 3px;
+    color: hsl(210 calc( 1 * 9.1%) 87.1% / 1);
+    background-color: hsl(225 calc( 1 * 6.3%) 12.5% / 1);
+    border: none;
+    transition: border-color .2s ease-in-out;
+}
+
+.signup-button {
+    color: hsl(0 calc( 1 * 0%) 100% / 1);
+    background-color: hsl(235 calc( 1 * 85.6%) 64.7% / 1);
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 8px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 40px;
+}
+
+.login-link {
+    margin-top: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.login-link-button {
+    color: hsl(200 calc( 1 * 100%) 49.4% / 1);
+    display: inline-block;
+    margin-left: 4px;
+    margin-bottom: 0;
+    vertical-align: bottom;
+    padding: 0;
+    width: auto;
+    text-decoration: none;
+
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.spacer {
+    margin: 0 32px;
+    border: 1px solid hsl(228, calc(1 * 6%), 32.5%, 0.48);
+}
+
+.signup-demo-header {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 8px;
+}
+
+.signup-demo-header > h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    line-height: 1.25;
+}
