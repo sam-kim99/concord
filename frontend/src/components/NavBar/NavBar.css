@@ -1,0 +1,68 @@
+.splash-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    max-width: 1180px;
+    min-height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.splash-logo > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+} 
+
+.splash-logo > a > h2 {
+    font-family: 'ginto bold';
+    font-size: 22px;
+    color: white;
+}
+
+.splash-logo > a> img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.splash-links {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+.splash-links a {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease; 
+}
+
+.splash-links a:hover {
+    transform: scale(1.1);
+}
+
+.splash-login {
+    justify-content: flex-end;
+    min-width: 116px;
+    display: flex;
+}
+
+.splash-login-button {
+    font-family: 'gg sans bold';
+    color: rgb(35, 39, 42);
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 7px 16px;
+    font-size: 14px;
+    line-height: 24px;
+    transition: all .2s;
+    text-decoration: none;
+}
+
+.splash-login-button:hover {
+    color: rgb(88, 101, 242);
+    background-color: #fff;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+    animation: glow 1s infinite alternate;
+}

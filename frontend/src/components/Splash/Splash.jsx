@@ -1,34 +1,12 @@
 import SplashBckgnd from '../../assets/bg.png'
-import SplashLogo from '../../assets/icon.png'
-import GithubLogo from '../../assets/github-mark-white.png'
-import LinkedInLogo from '../../assets/linkedin.png'
+import NavBar from '../NavBar/NavBar'
 import './Splash.css'
 
 const Splash = props => {
     return (
         <>
             <div className="splash-page">
-                <div className="splash-nav">
-                    <div className='splash-logo'>
-                        <a href="/">
-                            <img className="splash-logo-img" src={SplashLogo} alt="Logo" />
-                            <h2>Concord</h2>
-                        </a>
-                    </div>
-                    <div className='splash-links'>
-                        <a href="https://github.com/sam-kim99">
-                            <img className="nav-img" src={GithubLogo} alt="Github Logo" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/samuel-kim-b8460b225/">
-                            <img className="nav-img" src={LinkedInLogo} alt="Github Logo" />
-                        </a>
-                    </div>
-                    <div className='splash-login'>
-                        <a className='splash-login-button' href="/login">
-                            Login
-                        </a>
-                    </div>
-                </div>
+                <NavBar />
                 <div className="splash-bg">
                     <img className="splash-bg-img" src={SplashBckgnd} alt="Splash Background" />
                 </div>
@@ -42,6 +20,11 @@ const Splash = props => {
                         </div>
                         <div className='splash-content-end'>
                             <h2>THIS IS CONCORD.</h2>
+                        </div>
+                        <div className='splash-content-start'>
+                            <a className='splash-content-start-button' href="/login">
+                                Get Started with Concord
+                            </a>
                         </div>
                     </div>
                 </div>

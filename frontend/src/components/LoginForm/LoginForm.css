@@ -133,7 +133,7 @@
 }
 
 .login-button, .demo-button {
-    font-family: 'gg sans';
+    font-family: 'gg sans semibold';
     color: hsl(0 calc( 1 * 0%) 100% / 1);
     background-color: hsl(235 calc( 1 * 85.6%) 64.7% / 1);
     font-size: 16px;
@@ -180,14 +180,18 @@
 }
 
 .login-demo-header {
-    font-family: 'gg sans semibold';
-    margin-bottom: 8px;
+    margin-bottom: 18px;
 }
 
 .login-demo-header > h1 {
+    font-family: 'gg sans semibold';
     color: white;
     font-size: 24px;
     margin-bottom: 4px;
     font-weight: 600;
     line-height: 1.25;
+}
+
+.login-demo-header p {
+    font-family: 'gg sans'
 }

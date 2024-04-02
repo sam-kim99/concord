@@ -65,9 +65,6 @@ const LoginForm = props => {
                     </div>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="login-credential">
-                            {/* <label htmlFor="credential">EMAIL OR USERNAME
-                                <span className="required">{errors.errors ? <p className="error-message"> - {errors.errors}</p> : '*'}</span>                            
-                            </label> */}
                             <label className={errors.errors ? "error" : "login-cred"}>EMAIL OR USERNAME{errors.errors ? (
                                 <span className="err-msg"> - {errors.errors}</span>) : <span className="required">*</span> }
                             </label>

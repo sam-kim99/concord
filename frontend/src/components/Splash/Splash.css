@@ -33,93 +33,11 @@ body {
     margin: 0;
 }
 
- .splash-logo > a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-} 
-
-.splash-nav {
-    /* position: absolute;
-    top: 20px;
-    left: 20px; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    max-width: 1180px;
-    min-height: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 100%; */
-}
-
-.splash-logo > a > h2 {
-    font-family: 'ginto bold';
-    font-size: 22px;
-    color: white;
-}
-
-.splash-logo > a> img {
-    width: 36px;
-    height: 36px;
-    margin-right: 10px;
-}
-
-.splash-links {
-    display: flex;
-    justify-content: space-between;
-    width: 300px;
-}
-
-.splash-bg-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    /* filter: blur(4px); */
-}
-
 .nav-img {
     width: 38px;
     height: 38px;
 }
 
-.splash-login {
-    justify-content: flex-end;
-    min-width: 116px;
-    display: flex;
-}
-
-.splash-login-button {
-    font-family: 'gg sans bold';
-    color: rgb(35, 39, 42);
-    background-color: #fff;
-    border-radius: 40px;
-    padding: 7px 16px;
-    font-size: 14px;
-    line-height: 24px;
-    transition: all .2s;
-    text-decoration: none;
-}
-
-.splash-login-button:hover {
-    color: rgb(88, 101, 242);
-    background-color: #fff;
-    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
-}
-
-.splash-links a {
-    display: inline-block;
-    margin-right: 10px; /* Adjust spacing between link icons */
-    transition: transform 0.3s ease; /* Smooth transition effect */
-}
-
-.splash-links a:hover {
-    transform: scale(1.1); /* Scale up by 10% on hover */
-}
 
 .splash-content-container {
     padding-top: 150px;
@@ -153,4 +71,33 @@ body {
     font-weight: 700;
     font-size: 42px;
     color: #ffffff; 
+}
+
+.splash-content-start {
+    margin-top: 64px;
+
+}
+
+.splash-content-start-button {
+    border-radius: 28px;
+    font-size: 20px;
+    padding: 16px 32px;
+    background-color: #23272a;
+    color: white;
+    font-family: 'gg sans semibold';
+    text-decoration: none;
+}
+
+
+.splash-content-start-button:hover {
+    animation: glow 1s infinite alternate;
+}
+
+.splash-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }

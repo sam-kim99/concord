@@ -1,0 +1,71 @@
+.not-found-container {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.not-found-content {
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+.not-found-text {
+    font-family: 'ginto nord';
+    color: #5865f2;
+    font-size: 48px;
+}
+
+.splash-logo > a > h2 {
+    color: black;
+}
+
+.inverted a {
+    background-color: hsl(235,calc(1*86.1%),71.8%);
+    color: white;
+}
+
+.inverted a:hover {
+    color: rgb(88, 101, 242);
+    background-color: hsl(235,calc(1*86.1%),71.8%);
+    color: white;
+}
+
+.inverted img {
+    filter: invert(100%)
+}
+
+.not-found-gif img {
+    width: 480px;
+}
+
+.not-found-body {
+    overflow: auto;
+    grid-column: span 7;
+    max-width: 700px;
+    margin-top: 20px;
+}
+
+.not-found-p {
+    font-family: 'gg sans';
+    margin-top: 24px;
+    color: black;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 140%;
+}
+
+.not-found-link-list {
+    margin-top: 20px;
+    list-style: none;
+}
+
+.not-found-links {
+    font-family: 'gg sans';
+    color: hsl(200, 100%, 49.4%);
+    font-size: 20px;
+    line-height: 35px;
+    text-decoration: none;
+}
+
+.not-found-links:hover {
+    color: hsl(200, 100%, 42%);
+}
