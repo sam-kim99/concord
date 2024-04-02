@@ -8,7 +8,7 @@ import './RegisterForm.css'
 
 const RegisterForm = props => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.username);
+    // const sessionUser = useSelector(state => state.session.username);
     const [ errors, setErrors ] = useState({
         email: [],
         username: [],
@@ -23,28 +23,21 @@ const RegisterForm = props => {
 
     const { email, username , password } = user;
 
-    const handleSubmit = async (e) => { 
+    const handleSubmit =  (e) => { 
         e.preventDefault();
-
-        if (!email || !username || !password) {
-            setErrors({ 
-                email: email ? [] : ['Email is required'],
-                username: username ? [] : ['Username is required'],
-                password: password ? [] : ['Password is required']
-            });
-            return;
-        }
-
-        try {
-            await dispatch(createUser(user));
-        } catch (error) {
-            setErrors(error.errors); 
-        }
+        dispatch(createUser(user))
+            .catch(async res => {
+                const data = await res.json()
+                console.log(data)
+                if (data) {
+                    setErrors({ ...data })
+                }
+            })
     };
 
     return (
         <div className="signup">
-            <img className="login-bg" src={HomeBckgnd} alt="Home Background" />
+            <img className="login-bg" src={HomeBckgnd} alt="Login Background" />
             <div className="signup-wrapper">
                 <div className="signup-container">
                     <div className="signup-header">
@@ -52,15 +45,15 @@ const RegisterForm = props => {
                     </div>
                     <form className="signup-form" onSubmit={handleSubmit}>
                         <div className="signup-email">
-                            <label htmlFor="email">EMAIL</label>
+                            <label className={errors.email && errors.email.length > 0 ? "error" : "reg-email"} htmlFor="email">EMAIL{errors.email && errors.email.length > 0 ? <span className="err-msg"> - {errors.email[0]}</span> : <span className="required">*</span> }</label>
                             <input className="signup-input" type="text" value={email} onChange={(e) => setUser({ ...user, email: e.target.value })}/>
                         </div>
                         <div className="signup-username">
-                            <label htmlFor="username">USERNAME</label>
+                            <label className={errors.username && errors.username.length > 0 ? "error" : "reg-username"} htmlFor="username">USERNAME{errors.username && errors.username.length > 0 ? <span className="err-msg"> - {errors.username[0]}</span> : <span className="required">*</span> }</label>
                             <input className="signup-input" type="text" value={username} onChange={(e) => setUser({ ...user, username: e.target.value })}/>
                         </div>
                         <div className="signup-password">
-                            <label htmlFor="password">PASSWORD</label>
+                            <label className={errors.password && errors.password.length > 0 ? "error" : "reg-password"} htmlFor="password">PASSWORD{errors.password && errors.password.length > 0 ? <span className="err-msg"> - {errors.password[0]}</span> : <span className="required">*</span> }</label>
                             <input className="signup-input" type="password" value={password} onChange={(e) => setUser({ ...user, password: e.target.value })} />
                         </div>
                         <div className="signup-submit">
@@ -69,7 +62,7 @@ const RegisterForm = props => {
                             </button>
                         </div>
                     </form>
-                    <div className="login-link"><a href='/' className="login-link-button">Already have an account?</a></div>
+                    <div className="login-link"><a href='/login' className="login-link-button">Already have an account?</a></div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'gg sans semibold';
+    src: url('../../assets/font/GGsans-Semibold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gg sans';
+    src: url('../../assets/font/GGsans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gg sans bold';
+    src: url('../../assets/font/GGsans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ginto bold';
+    src: url('../../assets/font/Ginto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ginto nord';
+    src: url('../../assets/font/Ginto-Nord-Black.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.splash-page {
+    height: 100vh;
+    margin: 0;
+}
+
+ .splash-logo > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+} 
+
+.splash-nav {
+    /* position: absolute;
+    top: 20px;
+    left: 20px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1180px;
+    min-height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 100%; */
+}
+
+.splash-logo > a > h2 {
+    font-family: 'ginto bold';
+    font-size: 22px;
+    color: white;
+}
+
+.splash-logo > a> img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+
+.splash-links {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.splash-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* filter: blur(4px); */
+}
+
+.nav-img {
+    width: 38px;
+    height: 38px;
+}
+
+.splash-login {
+    justify-content: flex-end;
+    min-width: 116px;
+    display: flex;
+}
+
+.splash-login-button {
+    font-family: 'gg sans bold';
+    color: rgb(35, 39, 42);
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 7px 16px;
+    font-size: 14px;
+    line-height: 24px;
+    transition: all .2s;
+    text-decoration: none;
+}
+
+.splash-login-button:hover {
+    color: rgb(88, 101, 242);
+    background-color: #fff;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+}
+
+.splash-links a {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing between link icons */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.splash-links a:hover {
+    transform: scale(1.1); /* Scale up by 10% on hover */
+}
+
+.splash-content-container {
+    padding-top: 150px;
+    text-align: center;
+}
+
+.splash-content {
+    max-width: 840px; 
+    margin: 0 auto; 
+}
+
+.splash-content-header h1 {
+    font-family: 'ginto nord';
+    font-weight: 700;
+    font-size: 64px; 
+    color: #ffffff; 
+    margin-bottom: 28px;
+}
+
+.splash-content-body p {
+    font-family: 'gg sans';
+    font-size: 18px;
+    color: #ffffff; 
+    margin: 0 auto;
+    line-height: 1.625;
+    margin-bottom: 28px;
+}
+
+.splash-content-end h2 {
+    font-family: 'ginto nord';
+    font-weight: 700;
+    font-size: 42px;
+    color: #ffffff; 
+}

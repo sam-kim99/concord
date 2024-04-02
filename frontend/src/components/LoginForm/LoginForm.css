@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'gg sans semibold';
+    src: url('../../assets/font/GGsans-Semibold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gg sans';
+    src: url('../../assets/font/GGsans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gg sans bold';
+    src: url('../../assets/font/GGsans-Bold.ttf') format('truetype');
+}
+
+
 .login {
     position: relative;
     width: 100vw;
@@ -32,15 +48,6 @@
     color: hsl(214 calc( 1 * 8.1%) 61.2% / 1);
 }
 
-/* .login-wrapper > div {
-    opacity: 1;
-    transform: scale(1) translateY(0px) translateZ(0px);
-    width: 784px;
-    font-size: 18px;
-    border-radius: 5px;
-    box-sizing: border-box;
-} */
-
 .login-container {
     display: flex;
     flex-direction: column;
@@ -57,19 +64,17 @@
 }
 
 .login-header > h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'gg sans semibold';
     font-size: 24px;
     line-height: 1.25;
-    font-weight: 600;
     margin-bottom: 8px;
     color: hsl(220 calc( 1 * 13%) 95.5% / 1);
 }
 
 .login-subheader {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'gg sans semibold';
     font-size: 16px;
     line-height: 1.25;
-    font-weight: 400;
     color: hsl(215 calc( 1 * 8.8%) 73.3% / 1);
 }
 
@@ -84,12 +89,32 @@
     margin-bottom: 20px;
 }
 
-.login-credential > label,
-.login-password > label {
-    font-family: Arial, Helvetica, sans-serif;
+.error {    
+    font-family: 'gg sans bold';
+    font-size: 12px;
+    letter-spacing: .02em;
+    display: block;
+    margin-bottom: 8px;
+    color: hsl(358 calc( 1 * 92.9%) 72.4% / 1);
+}
+
+.err-msg {
+    font-style: italic;
+}
+
+.login-cred,
+.login-pw {
+    font-family: 'gg sans bold';
+    font-size: 12px;
+    letter-spacing: .02em;
     display: block;
     color: hsl(215 calc( 1 * 8.8%) 73.3% / 1);
     margin-bottom: 8px;
+}
+
+.required {
+    padding-left: 4px;
+    color: hsl(358 calc( 1 * 92.9%) 72.4% / 1);
 }
 
 .login-input {
@@ -100,6 +125,7 @@
     width: 100%;
     height: 40px;
     border-radius: 3px;
+    padding: 8px;
     color: hsl(210 calc( 1 * 9.1%) 87.1% / 1);
     background-color: hsl(225 calc( 1 * 6.3%) 12.5% / 1);
     border: none;
@@ -107,6 +133,7 @@
 }
 
 .login-button, .demo-button {
+    font-family: 'gg sans';
     color: hsl(0 calc( 1 * 0%) 100% / 1);
     background-color: hsl(235 calc( 1 * 85.6%) 64.7% / 1);
     font-size: 16px;
@@ -126,7 +153,7 @@
 
 .register-link {
     margin-top: 4px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'gg sans';
     color: white;
     font-size: 14px;
     line-height: 16px;
@@ -153,7 +180,7 @@
 }
 
 .login-demo-header {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'gg sans semibold';
     margin-bottom: 8px;
 }
 

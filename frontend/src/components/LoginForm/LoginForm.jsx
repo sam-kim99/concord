@@ -14,18 +14,22 @@ const LoginForm = props => {
         password: ''
     });
 
-    const [ errors, setErrors ] = useState(null);
+    const [ errors, setErrors ] = useState({
+        errors: ''
+    });
 
     const { credential, password } = user;
 
-    const handleSubmit = async (e) => { 
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            await dispatch(loginUser(user));
-        } catch (error) {
-            setErrors(error.errors); 
-        }
-    };
+        dispatch(loginUser(user))
+        .catch(async res => {
+            let data = await res.json();
+            if (data.errors) {
+                setErrors(data)
+            }
+        })
+    }
 
     const handleDemo = async (e) => {
         e.preventDefault();
@@ -61,11 +65,18 @@ const LoginForm = props => {
                     </div>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="login-credential">
-                            <label htmlFor="credential">EMAIL OR USERNAME</label>
+                            {/* <label htmlFor="credential">EMAIL OR USERNAME
+                                <span className="required">{errors.errors ? <p className="error-message"> - {errors.errors}</p> : '*'}</span>                            
+                            </label> */}
+                            <label className={errors.errors ? "error" : "login-cred"}>EMAIL OR USERNAME{errors.errors ? (
+                                <span className="err-msg"> - {errors.errors}</span>) : <span className="required">*</span> }
+                            </label>
                             <input className="login-input" type="text" value={credential} onChange={(e) => setUser({ ...user, credential: e.target.value })}/>
                         </div>
                         <div className="login-password">
-                            <label htmlFor="password">PASSWORD</label>
+                            <label className={errors.errors ? "error" : "login-pw"}>PASSWORD{errors.errors ? (
+                                    <span className="err-msg"> - {errors.errors}</span>) : <span className="required">*</span> }
+                            </label>
                             <input className="login-input" type="password" value={password} onChange={(e) => setUser({ ...user, password: e.target.value })} />
                         </div>
                         <div className="login-submit">
