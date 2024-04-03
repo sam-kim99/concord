@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-// import { deleteSession } from '../../utils/sessionApiUtils';
 import { logoutUser } from '../../store/sessionReducer';
 import './MainPage.css'
 
@@ -28,6 +27,20 @@ const MainPage = props => {
 
     return (
         <>
+            <div className='main-page-container'>
+                <div className='server-list'>
+
+                </div>
+                <div className='friends-list'>
+
+                </div>
+                <div className='main-content'>
+
+                </div>
+                <div className='adtl-info'>
+
+                </div>
+            </div>
             <h1>Welcome to the main page.</h1>
             <button onClick={handleSignout}>Sign Out</button>
         </>
