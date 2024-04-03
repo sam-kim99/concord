@@ -1,9 +1,17 @@
 import SplashLogo from '../../assets/icon.png'
 import GithubLogo from '../../assets/github-mark-white.png'
 import LinkedInLogo from '../../assets/linkedin.png'
+import { useSelector } from 'react-redux'
 import './NavBar.css'
+import { Link } from 'react-router-dom'
 
 const NavBar = ({ specialClass }) => {
+    const sessionUser = useSelector(state => state.session?.username);
+
+    // Conditionally render the button text and link
+    const buttonText = sessionUser ? 'Open Concord' : 'Login';
+    const buttonLink = sessionUser ? '/channels/@me' : '/login';
+
     return (
         <>
             <div className="splash-nav">
@@ -22,9 +30,7 @@ const NavBar = ({ specialClass }) => {
                     </a>
                 </div>
                 <div className={`splash-login ${ specialClass }`}>
-                    <a className= "splash-login-button" href="/login">
-                        Login
-                    </a>
+                    <Link className="splash-login-button" to={buttonLink} >{buttonText}</Link>
                 </div>
             </div>
         </>

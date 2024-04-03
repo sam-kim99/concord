@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SplashBckgnd from '../../assets/bg.png'
 import NavBar from '../NavBar/NavBar'
 import './Splash.css'
@@ -22,9 +23,7 @@ const Splash = props => {
                             <h2>THIS IS CONCORD.</h2>
                         </div>
                         <div className='splash-content-start'>
-                            <a className='splash-content-start-button' href="/login">
-                                Get Started with Concord
-                            </a>
+                            <Link to="/login" className='splash-content-start-button'>Get Started with Concord</Link>
                         </div>
                     </div>
                 </div>

@@ -11,9 +11,17 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-    has_secure_password
     before_validation :ensure_session_token
 
+    # Associations
+    has_many :memberships
+    has_many :servers, through: :memberships
+    has_many :friendships
+    has_many :friends, through: :friendships
+
+    has_secure_password
+
+    # Validations
     validates :username, 
             presence: true,
             uniqueness: true, 
@@ -26,6 +34,7 @@ class User < ApplicationRecord
         format: { with: URI::MailTo::EMAIL_REGEXP, message: "is not a valid email" }
     validates :session_token, presence: true, uniqueness: true
     validates :password, length: { in: 6..40 }, allow_nil: true
+
 
     def self.find_by_credentials(credential, password)
         if credential.match?(URI::MailTo::EMAIL_REGEXP)

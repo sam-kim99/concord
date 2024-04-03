@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/sessionReducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import HomeBckgnd from '../../assets/bg.png'
 import './LoginForm.css'
 
@@ -43,13 +43,13 @@ const LoginForm = props => {
         let demoUser;
         if (e.target.value === '1') {
             demoUser = {
-                credential: 'testuser1',
-                password: 'password'
+                credential: 'SuperCoolGuy331',
+                password: 'password!!!'
             };
         } else {
             demoUser = {
-                credential: 'testuser2',
-                password: 'password'
+                credential: 'ketchup@test.com',
+                password: 'must@rdreallysucks'
             };
         }
         try {
@@ -90,7 +90,9 @@ const LoginForm = props => {
                             </button>
                         </div>
                     </form>
-                    <div className="register-link">Need an account? <a href='/signup' className="register-link-button">Register</a></div>
+                    <div className="register-link">
+                         Need an account? <Link to="/signup" className="register-link-button">Register</Link>
+                    </div>
                 </div>
                 <div className="spacer"></div>
                 <div className="login-demo">

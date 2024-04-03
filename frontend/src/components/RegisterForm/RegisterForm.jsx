@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../store/sessionReducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import HomeBckgnd from '../../assets/bg.png'
 import './RegisterForm.css'
 
@@ -69,7 +69,9 @@ const RegisterForm = props => {
                             </button>
                         </div>
                     </form>
-                    <div className="login-link"><a href='/login' className="login-link-button">Already have an account?</a></div>
+                    <div className="login-link">
+                        <Link to="/login" className="login-link-button">Already have an account?</Link> 
+                    </div>
                 </div>
             </div>
         </div>
