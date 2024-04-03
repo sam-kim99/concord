@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
 import { createUser } from "../../store/sessionReducer";
+import { useNavigate } from "react-router-dom";
 import HomeBckgnd from '../../assets/bg.png'
 import './RegisterForm.css'
 
 
 const RegisterForm = props => {
     const dispatch = useDispatch();
-    // const sessionUser = useSelector(state => state.session.username);
+    const navigate = useNavigate();
+
+    const sessionUser = useSelector(state => state.session?.username);
+
+    useEffect(() => {
+        if (sessionUser) navigate('/channels/@me'); 
+    }, [sessionUser, navigate])
+
     const [ errors, setErrors ] = useState({
         email: [],
         username: [],

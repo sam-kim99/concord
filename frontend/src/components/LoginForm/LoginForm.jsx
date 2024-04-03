@@ -1,13 +1,20 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/sessionReducer";
+import { useNavigate } from "react-router-dom";
 import HomeBckgnd from '../../assets/bg.png'
 import './LoginForm.css'
 
 
 const LoginForm = props => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    
+    const sessionUser = useSelector(state => state.session?.username);
+    
+    useEffect(() => {
+        if (sessionUser) navigate('/channels/@me'); 
+    }, [sessionUser, navigate])
 
     const [ user, setUser ] = useState({
         credential: '',
@@ -52,6 +59,7 @@ const LoginForm = props => {
         }
     };
 
+
     return (
         <div className="login">
             <img className="login-bg" src={HomeBckgnd} alt="Home Background" />
@@ -82,7 +90,7 @@ const LoginForm = props => {
                             </button>
                         </div>
                     </form>
-                    <div className="register-link">Need an account? <a href='/register' className="register-link-button">Register</a></div>
+                    <div className="register-link">Need an account? <a href='/signup' className="register-link-button">Register</a></div>
                 </div>
                 <div className="spacer"></div>
                 <div className="login-demo">

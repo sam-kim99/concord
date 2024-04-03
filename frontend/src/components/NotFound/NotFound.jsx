@@ -23,7 +23,7 @@ const NotFound = props => {
                                 <a className='not-found-links' href="/login">Login Lane</a>
                             </li>
                             <li>
-                                <a className='not-found-links' href="/register">Register Road</a>
+                                <a className='not-found-links' href="/signup">Register Road</a>
                             </li>
                         </ul>
                     </div>
