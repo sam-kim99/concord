@@ -5,4 +5,5 @@ class Friendship < ApplicationRecord
     
     # Validations
     validates :user_id, uniqueness: { scope: :friend_id }
+    validates :status, presence: true, inclusion: { in: %w(pending accepted rejected) }
 end
