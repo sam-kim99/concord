@@ -1,0 +1,132 @@
+.new-server-header {
+    padding: 24px 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-server-header > h1 {
+    text-align: center;
+    font-family: 'gg sans bold';
+    color: white;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.new-server-subheader {
+    font-family: 'gg sans';
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 400;
+    color: hsl(215 calc( 1 * 8.8%) 73.3% / 1);
+    margin-top: 8px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    transition: opacity .2s ease-in-out;
+    cursor: pointer;
+    opacity: .5;
+    padding: 4px;
+}
+
+.button-img {
+    color: hsl(215 calc( 1 * 8.8%) 73.3% / 1);
+    width: 16px;
+}
+
+.button-img:hover {
+    filter: invert(50%)
+}
+
+.placeholder {
+    text-align: center;
+    padding: 8px;
+    font-family: 'gg sans bold';
+    color: white;
+    margin: 16px;
+}
+
+.server-name-input-container {
+    margin-top: 24px;
+    margin: 16px;
+    
+}
+
+.server-name-input-container > h1 {
+    display: block;
+    color: hsl(215 calc( 1 * 8.8%) 73.3% / 1);
+    font-family: 'gg sans bold';
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 1.3333333333333333;
+    letter-spacing: .02em;
+}
+
+.name-input {
+    padding: 10px;
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 3px;
+    color: hsl(210 calc( 1 * 9.1%) 87.1% / 1);
+    background-color: hsl(225 calc( 1 * 6.3%) 12.5% / 1);
+    border: none;
+    transition: border-color .2s ease-in-out;
+}
+
+.guidelines {
+    color: hsl(214 calc( 1 * 8.1%) 61.2% / 1);
+    padding-bottom: 4px;
+    font-family: 'gg sans';
+    font-size: 12px;
+    line-height: 1.333333;
+    margin: 16px;
+}
+
+.guidelines-link {
+    color: hsl(200 calc( 1 * 100%) 49.4% / 1);
+    text-decoration: none;
+}
+
+.new-server-footer {
+    background: hsl(220 calc( 1 * 6.5%) 18% / 1);
+    padding: 16px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: end;
+}
+
+.create-button {
+    color: hsl(0 calc( 1 * 0%) 100% / 1);
+    background-color: hsl(235 calc( 1 * 85.6%) 64.7% / 1);
+    width: auto;
+    height: 38px;
+    min-width: 96px;
+    min-height: 38px;
+    transition: background-color 170ms ease, color 170ms ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    line-height: 16px;
+    padding: 2px 16px;
+    cursor: pointer;
+}
+
+.button-contents {
+    font-family: 'gg sans';
+    font-size: 14px;
+    margin: 0 auto;
+    white-space: nowrap;
+}

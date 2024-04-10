@@ -1,0 +1,115 @@
+.channel-content {
+    position: relative;
+    list-style: none;
+}
+
+.text-channels-container {
+    padding-bottom: 8px;
+}
+
+.text-channels-content {
+    padding-top: 16px;
+    position: relative;
+    height: 24px;
+    padding-right: 16px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
+}
+
+.text-channels-content h3 {
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .02em;
+    font-family: 'gg sans';
+    font-weight: 600;
+    flex: 1 1 auto;
+    color: hsl(214 calc( 1 * 8.1%) 61.2% / 1);
+    line-height: 10px;
+}
+
+.text-channel-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    cursor: pointer;
+}
+
+.channel-icons {
+    filter: grayscale(1) brightness(0.6);
+    width: 12px;
+    height: 12px;
+}
+
+.channel-container-list {
+    padding: 1px 0;
+    overflow: visible;
+    position: relative;
+    padding: 8px 10px;
+    margin-bottom: 2px;
+}
+
+.channel-container {
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.channel-hashtag {
+    position: relative;
+    margin-right: 6px;
+}
+
+.channel-hashtag img {
+    display: block;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+}
+
+.channel-name {
+    color: hsl(214 calc( 1 * 8.1%) 61.2% / 1);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    flex: 1 1 auto;
+    position: relative;
+    font-family: 'gg sans medium';
+}
+
+.channel-container-list:hover {
+    background-color: #35373c;
+    border-radius: 6px;
+}
+
+.active,
+.active:hover {
+    background-color: hsl(228 calc( 1 * 6%) 32.5% / 0.6);
+    border-radius: 6px;
+}
+
+.active .channel-name {
+    color: white;
+}
+
+.channels-list {
+    padding: 8px;
+}
