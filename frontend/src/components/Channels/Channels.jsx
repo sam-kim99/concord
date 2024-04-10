@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
-import { fetchChannels } from '../../store/channelReducer';
+import { destroyChannel, fetchChannels } from '../../store/channelReducer';
 import { useDispatch, useSelector } from "react-redux";
 import AddChannel from "../../assets/addchannel.png";
 import ChannelHashtag from "../../assets/channel.png";
 import ChannelForm from '../ChannelForm/ChannelForm';
+import Gear from "../../assets/gear.png";
+import TrashCan from "../../assets/delete.png";
 import './Channels.css'
 
 const Channels = props => {
@@ -14,6 +16,7 @@ const Channels = props => {
     const channels = useSelector(state => state.channel);
     const channelsArray = Object.values(channels);
     const [activeLink , setActiveLink] = useState(0);
+    const [isUpdateMode, setIsUpdateMode] = useState(false);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -32,7 +35,7 @@ const Channels = props => {
                             </div>
                             <div className='text-channel-add'>
                                 <img className="channel-icons" src={AddChannel} alt="plus sign" 
-                                    onClick={() => setShowModal(true)}
+                                    onClick={() => {setShowModal(true); setIsUpdateMode(false);}}
                                 />
                             </div>
                         </div>
@@ -49,6 +52,14 @@ const Channels = props => {
                                     <div className='channel-name'>
                                         {channel.name}
                                     </div>
+                                    <div className='channel-ud'>
+                                        <div className='update-channel'>
+                                            <img src={Gear} onClick={() => {setShowModal(true); setIsUpdateMode(true);}} />
+                                        </div>
+                                        <div className='delete-channel'>
+                                            <img src={TrashCan}  onClick={() => dispatch(destroyChannel(channel)) }/>
+                                        </div>
+                                    </div>
                                 </Link>
                             </div>
                         </li>
@@ -56,7 +67,7 @@ const Channels = props => {
                 </ul>
             </div>
             {showModal && <div className='overlay' onClick={() => setShowModal(false)}></div>}
-            {showModal && <div className='new-server-container'><ChannelForm setShowModal={setShowModal}/></div>}
+            {showModal && <div className='new-server-container'><ChannelForm setShowModal={setShowModal} isUpdating={isUpdateMode}/></div>}
         </>
     )
 }

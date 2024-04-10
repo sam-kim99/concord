@@ -13,6 +13,8 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
 
     const currentChannel = useSelector(state => state.channel[channelId])
 
+    const [ channelName, setChannelName ] = useState('');
+
     const [ channel, setChannel ] = useState({
         id: channelId,
         name: '',
@@ -24,19 +26,19 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
     })
 
     useEffect(() => {
-        if (currentChannel) {
-            setChannel({ ...channel, name: currentChannel.name });
+        if (isUpdating && currentChannel) {
+            setChannelName(currentChannel.name);
         }
-    }, [currentChannel]);
+    }, [currentChannel, isUpdating]);    
 
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
             let dispatchPromise;
             if (isUpdating) {
-                dispatchPromise = dispatch(updateChannel(channel));
+                dispatchPromise = dispatch(updateChannel({ ...currentChannel, name: channelName }));
             } else {
-                dispatchPromise = dispatch(createChannel(channel));
+                dispatchPromise = dispatch(createChannel({ id: channelId, name: channelName, server_id: serverId }));
             }
             dispatchPromise.then(() => setShowModal(false))
                            .catch((error) => {
@@ -50,13 +52,14 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
             console.error('An error occurred:', error);
         }
     }
+    
 
     return (
         <>
             <div className="channel-modal">
                 <div className="channel-header">
                     <div className="channel-text">
-                        <h1>Create Channel</h1>
+                        <h1>{isUpdating ? 'Update Channel' : 'Create Channel'}</h1>
                         <div className="channel-subheader">
                             <h3>in Text Channels</h3>
                         </div>
@@ -75,9 +78,10 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
                             </label>
                             <div className="channel-form-field">
                                 <img src={ChannelHashtag} />
-                                <input className="channel-name-input" type="text" maxLength="100"
-                                placeholder="new-channel"
-                                onChange={(e) => setChannel({ ...channel, name: e.target.value})}
+                                <input className="channel-name-input" type="text" maxLength="100" 
+                                value={channelName}
+                                placeholder={!isUpdating ? "new-channel" : ''}
+                                onChange={(e) => setChannelName(e.target.value)}
                                 />
                             </div>
                         </form>
@@ -85,7 +89,7 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
                 </div>
                 <div className="channel-footer">
                     <button type="button" className="cancel-button" onClick={() => setShowModal(false)}>Cancel</button>
-                    <button type="submit" className="channel-submit" form="channel-form">Create Channel</button>
+                    <button type="submit" className="channel-submit" form="channel-form">{isUpdating ? 'Update Channel' : 'Create Channel'}</button>
                 </div>
             </div>
         </>

@@ -93,6 +93,10 @@
     flex: 1 1 auto;
     position: relative;
     font-family: 'gg sans medium';
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
 }
 
 .channel-container-list:hover {
@@ -112,4 +116,29 @@
 
 .channels-list {
     padding: 8px;
+}
+
+.channel-ud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.channel-ud img {
+    margin-left: 4px;
+    position: relative;
+    cursor: pointer;
+    line-height: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.update-channel {
+    filter: grayscale(1) brightness(0.7);
+}
+
+.delete-channel img{
+    width: 20px;
+    height: 20px;
 }
