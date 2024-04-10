@@ -16,6 +16,9 @@ function App() {
           <Route exact path="/login" element={< LoginForm />} />
           <Route exact path="/signup" element={< RegisterForm />} />
           <Route exact path="/channels/:serverId" element={ <MainPage/> }/>
+          <Route path="/channels/:serverId" element={ <MainPage/> }>
+            <Route path=":channelId" element={ <MainPage/> }/>
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
