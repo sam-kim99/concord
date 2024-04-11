@@ -27,8 +27,11 @@ class Api::MessagesController < ApplicationController
     end
 
     def destroy
-        
-        @message.destroy
+        if @message&.user_id == current_user.id
+            @message.destroy
+        else
+            render json: @message.errors, status: 401
+        end
     end
 
     private
