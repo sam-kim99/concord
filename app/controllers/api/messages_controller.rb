@@ -2,6 +2,16 @@ class Api::MessagesController < ApplicationController
     wrap_parameters include: Message.attribute_names
     before_action :set_message, only: [:show, :update, :destroy]
 
+    def index
+        @channel = Channel.find_by(id: params[:channel_id])
+        if @channel
+            @messages = @channel.messages.includes(:user)
+            render :index
+        else
+            render json: {error: 'Channel not found'}, status: 404
+        end
+    end
+
     def show
         if @message
             render 'api/messages/show'
