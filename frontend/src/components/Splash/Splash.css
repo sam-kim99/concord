@@ -9,6 +9,11 @@
 }
 
 @font-face {
+    font-family: 'gg sans medium';
+    src: url('../../assets/font/GGsans-Medium.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'gg sans bold';
     src: url('../../assets/font/GGsans-Bold.ttf') format('truetype');
 }

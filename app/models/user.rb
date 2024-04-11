@@ -14,10 +14,17 @@ class User < ApplicationRecord
     before_validation :ensure_session_token
 
     # Associations
-    has_many :memberships
+    has_many :memberships, dependent: :destroy
     has_many :servers, through: :memberships
-    has_many :friendships
+    has_many :friendships, dependent: :destroy
     has_many :friends, through: :friendships
+    has_many :admin_memberships, -> { where admin: true }, class_name: 'Membership'
+    has_many :admin_servers, through: :admin_memberships, source: :server
+    has_many :messages, dependent: :destroy
+    has_many :owned_servers,
+        foreign_key: :owner_id,
+        class_name: :Server,
+        dependent: :destroy
 
     has_secure_password
 

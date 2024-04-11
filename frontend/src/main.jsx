@@ -7,6 +7,8 @@ import configureStore from './store/store.js';
 import { restoreSession } from './utils/csrfUtils.js';
 import { deleteSession, postSession, postUser } from './utils/sessionApiUtils.js';
 import { createUser, loginUser, logoutUser } from './store/sessionReducer.js';
+import { createServer, destroyServer, fetchServers, updateServer } from './store/serverReducer.js';
+import { createChannel, destroyChannel, fetchChannels, updateChannel } from './store/channelReducer.js';
 
 const initializeApp = () => {
   const store = configureStore();
@@ -19,6 +21,14 @@ const initializeApp = () => {
   window.createUser = createUser;
   window.loginUser = loginUser;
   window.logoutUser = logoutUser;
+  window.createServer = createServer;
+  window.updateServer = updateServer;
+  window.destroyServer = destroyServer;
+  window.fetchServers = fetchServers;
+  window.createChannel = createChannel;
+  window.updateChannel = updateChannel;
+  window.destroyChannel = destroyChannel;
+  window.fetchChannels = fetchChannels;
   //
   
   ReactDOM.createRoot(document.getElementById('root')).render(

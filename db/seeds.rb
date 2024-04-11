@@ -48,5 +48,119 @@ ApplicationRecord.transaction do
         )
     end
 
+    puts "Seeding Servers..."
+
+    Server.create!(
+        name: 'something really awesome',
+        owner_id: 1,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'rails rules',
+        owner_id: 1,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'more of a react guy myself',
+        owner_id: 1,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'Cloud9 Prac Room',
+        owner_id: 1,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'super happy fun time',
+        owner_id: 1,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'pickleball practice',
+        owner_id: 2,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'FriendsNFamily',
+        owner_id: 2,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'CODING IS COOL',
+        owner_id: 2,
+        dm_server: false
+    )
+    
+    Server.create!(
+        name: 'App Academy',
+        owner_id: 2,
+        dm_server: false
+    )
+
+    Server.create!(
+        name: 'React Fan Club',
+        owner_id: 2,
+        dm_server: false
+    )
+
+    puts "Seeding Channels..."
+
+    Channel.create!(
+        name: 'general',
+        server_id: 1
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 2
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 3
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 4
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 5
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 6
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 7
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 8
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 9
+    )
+    
+    Channel.create!(
+        name: 'general',
+        server_id: 10
+    )
+    
     puts "Seeding complete."
 end

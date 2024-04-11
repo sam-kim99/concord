@@ -1,11 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { logoutUser } from '../../store/sessionReducer';
+import ServerList from '../ServerList/ServerList';
+import Sidebar from '../Sidebar/Sidebar';
+import Content from '../Content/Content';
+import ExtraInfo from '../ExtraInfo/ExtraInfo';
 import './MainPage.css'
 
 const MainPage = props => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     
     const sessionUser = useSelector(state => state.session?.username);
@@ -14,35 +16,22 @@ const MainPage = props => {
         if (!sessionUser) navigate('/login');
     }, [sessionUser, navigate])
 
-    const handleSignout = e => {
-        e.preventDefault();
-        dispatch(logoutUser())
-        .catch(async res => {
-            let data = await res.json();
-            if (data.errors) {
-                setErrors(data)
-            }
-        })
-    }
-
     return (
         <>
             <div className='main-page-container'>
                 <div className='server-list'>
-
+                    <ServerList />
                 </div>
-                <div className='friends-list'>
-
+                <div className='sidebar'> 
+                    <Sidebar /> 
                 </div>
-                <div className='main-content'>
-
+                <div className='content'>
+                    <Content />
                 </div>
-                <div className='adtl-info'>
-
+                <div className='extra-info'>
+                    <ExtraInfo />
                 </div>
             </div>
-            <h1>Welcome to the main page.</h1>
-            <button onClick={handleSignout}>Sign Out</button>
         </>
     )
 }

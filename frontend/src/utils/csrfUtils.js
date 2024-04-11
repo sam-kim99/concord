@@ -12,7 +12,7 @@ export const csrfFetch = async (url, options) => {
 
     if (options.method.toUpperCase() !== 'GET' ) {
         options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
-        if (options.method.toUpperCase() === 'POST' && !(options.body instanceof FormData)) {
+        if (!(options.body instanceof FormData)) {
             options.headers['Content-Type'] = 'application/json';
         }
     }

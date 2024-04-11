@@ -30,12 +30,12 @@ const LoginForm = props => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginUser(user))
-        .catch(async res => {
-            let data = await res.json();
-            if (data.errors) {
-                setErrors(data)
-            }
-        })
+            .catch(async res => {
+                let data = await res.json();
+                if (data.errors) {
+                    setErrors(data)
+                }
+            })
     }
 
     const handleDemo = async (e) => {
