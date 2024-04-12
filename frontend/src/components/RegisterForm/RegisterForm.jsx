@@ -35,7 +35,7 @@ const RegisterForm = props => {
         dispatch(createUser(user))
             .catch(async res => {
                 const data = await res.json()
-                console.log(data)
+
                 if (data) {
                     setErrors({ ...data })
                 }

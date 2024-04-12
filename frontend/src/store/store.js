@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 });
 
 const configureStore = ( initialState = {} ) => (
-    createStore(rootReducer, initialState, applyMiddleware(thunk, logger))
+    createStore(rootReducer, initialState, applyMiddleware(thunk))
 );
 
 export default configureStore;
