@@ -174,7 +174,7 @@ ApplicationRecord.transaction do
 
     Channel.create!(
         name: 'anti-rails-club',
-        server_id: 2
+        server_id: 3
     )
 
 
