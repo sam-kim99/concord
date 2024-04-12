@@ -263,3 +263,54 @@
 .message-text-input::placeholder {
     color: hsl(229 calc(1 * 4.8%) 44.9% / 1);
 }
+
+.edit-input {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: hsl(225 calc( 1 * 6.7%) 23.5% / 1);;
+    color: white;
+    border: none;
+    appearance: none;
+    outline: none;
+}
+
+.message-button-container {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.message-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-buttons img {
+    width: 20px;
+    padding-left: 6px;
+}
+
+.own-message:hover .message-button-container {
+    display: block;
+}
+
+.edit-message, .delete-message {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.edit-message:hover, .delete-message:hover {
+    opacity: 1;
+}
+
+.message:hover {
+    background-color: #2e3035;
+}

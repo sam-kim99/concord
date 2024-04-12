@@ -30,10 +30,12 @@ class Api::MessagesController < ApplicationController
     end
 
     def update
-        if @message.update(message_params)
-            render 'api/messages/show'
-        else
-            render json: @message.errors, status: :unprocessable_entity
+        if @message.user_id == current_user.id
+            if @message.update(message_params)
+                render 'api/messages/show'
+            else
+                render json: @message.errors, status: :unprocessable_entity
+            end
         end
     end
 
