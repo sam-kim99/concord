@@ -5,12 +5,12 @@ import ServerList from '../ServerList/ServerList';
 import Sidebar from '../Sidebar/Sidebar';
 import Content from '../Content/Content';
 import ExtraInfo from '../ExtraInfo/ExtraInfo';
-import './MainPage.css'
+import "./MePage.css"
 
-const MainPage = props => {
+const MePage = props => {
     const navigate = useNavigate();
-    
-    const sessionUser = useSelector(state => state.session?.username);
+
+    const sessionUser = useSelector(state => state.session?.username)
 
     useEffect(() => {
         if (!sessionUser) navigate('/login');
@@ -28,12 +28,12 @@ const MainPage = props => {
                 <div className='content'>
                     <Content />
                 </div>
-                {/* <div className='extra-info'>
+                <div className='extra-info'>
                     <ExtraInfo />
-                </div> */}
+                </div>
             </div>
         </>
     )
 }
 
-export default MainPage;
+export default MePage;

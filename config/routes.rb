@@ -9,14 +9,19 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :api, defaults: { format: :json } do
-      resources :users, only: [:show, :create]
-      resource :session, only: [:show, :create, :destroy]
-      resources :servers do 
-        resources :channels
-      end
-      resources :messages
-      resources :memberships, only: [:create, :destroy]
-      resources :friendships, only: [:create, :destroy]
+    resources :users, only: [:show, :create]
+    resource :session, only: [:show, :create, :destroy]
+    resources :servers do 
+      resources :channels
+    end
+
+    resources :channels, except: [:index] do
+      resources :messages, only: [:index]
+    end
+
+    resources :messages, except: [:index]
+    resources :memberships, only: [:create, :destroy]
+    resources :friendships, only: [:create, :destroy]
   end
 
   get '*path', to: "static_pages#frontend"

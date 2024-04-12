@@ -52,14 +52,16 @@ const Channels = props => {
                                     <div className='channel-name'>
                                         {channel.name}
                                     </div>
-                                    <div className='channel-ud'>
-                                        <div className='update-channel'>
-                                            <img src={Gear} onClick={() => {setShowModal(true); setIsUpdateMode(true);}} />
+                                    {!(channel.name === 'general') &&
+                                        <div className='channel-ud'>
+                                            <div className='update-channel'>
+                                                <img src={Gear} onClick={() => {setShowModal(true); setIsUpdateMode(true);}} />
+                                            </div>
+                                            <div className='delete-channel'>
+                                                <img src={TrashCan}  onClick={() => dispatch(destroyChannel(channel)) }/>
+                                            </div>
                                         </div>
-                                        <div className='delete-channel'>
-                                            <img src={TrashCan}  onClick={() => dispatch(destroyChannel(channel)) }/>
-                                        </div>
-                                    </div>
+                                    }
                                 </Link>
                             </div>
                         </li>

@@ -9,6 +9,7 @@ import { deleteSession, postSession, postUser } from './utils/sessionApiUtils.js
 import { createUser, loginUser, logoutUser } from './store/sessionReducer.js';
 import { createServer, destroyServer, fetchServers, updateServer } from './store/serverReducer.js';
 import { createChannel, destroyChannel, fetchChannels, updateChannel } from './store/channelReducer.js';
+import { createMessage, destroyMessage, fetchMessages, updateMessage } from './store/messageReducer.js';
 
 const initializeApp = () => {
   const store = configureStore();
@@ -29,6 +30,10 @@ const initializeApp = () => {
   window.updateChannel = updateChannel;
   window.destroyChannel = destroyChannel;
   window.fetchChannels = fetchChannels;
+  window.fetchMessages = fetchMessages;
+  window.createMessage = createMessage;
+  window.updateMessage = updateMessage;
+  window.destroyMessage = destroyMessage;
   //
   
   ReactDOM.createRoot(document.getElementById('root')).render(
