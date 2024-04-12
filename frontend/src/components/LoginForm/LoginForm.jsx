@@ -101,8 +101,8 @@ const LoginForm = props => {
                         <p>Click on one of the users below to check out the app.</p>
                     </div>
                     <div className="login-demo-buttons">
-                        <button className="demo-button" onClick={handleDemo} value={'1'}>Demo User 1</button>
-                        <button className="demo-button" onClick={handleDemo} value={'2'}>Demo User 2</button>
+                        <button className="demo-button" onClick={handleDemo} value={'1'}>SuperCoolGuy331</button>
+                        <button className="demo-button" onClick={handleDemo} value={'2'}>ReallyAwesomeSauce369</button>
                     </div>
                 </div>
             </div>

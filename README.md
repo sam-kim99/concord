@@ -1,24 +1,17 @@
-# README
+# Concord
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Concord is a Discord clone built using React in the front-end and Rails in the backend. It provides a platform for users to communicate via servers, channels, and messages, with full CRUD functionality for each component.
 
-Things you may want to cover:
+You can click the Live Demo link to be redirected to a working version of this project. There will be two buttons on the Splash page that will redirect you to the Login/Register page (Get Started With Concord, Login). From there, you can choose to login, register, or use one of the two demo accounts to explore further.
 
-* Ruby version
+![SplashPage](/frontend/src/assets/splash-final.png)
 
-* System dependencies
+### Features
 
-* Configuration
+To get started, users must be signed in. 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Future Implementations
+- WebSockets for instant-messaging
+- Ability to add and delete friends
+- Direct-messaging between friends
+- Ability to invite other members to a server
