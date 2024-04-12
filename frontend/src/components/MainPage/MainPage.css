@@ -1,13 +1,16 @@
 .main-page-container {
     display: flex;
     background: #36393f;
-    height: 100%;
+    height: 100vh; 
+    width: 100vw; 
+    overflow: hidden; 
 }
 
 .server-list {
     background: #202225;
     float: left;
     width: 72px;
+    flex-shrink: 0;
 }
 
 
@@ -114,4 +117,8 @@
     z-index: 999;
 }
 
-
+.content {
+    flex-grow: 1;
+    background-color: #2f3136;
+    overflow-y: auto;
+}

@@ -28,9 +28,9 @@ const MainPage = props => {
                 <div className='content'>
                     <Content />
                 </div>
-                <div className='extra-info'>
+                {/* <div className='extra-info'>
                     <ExtraInfo />
-                </div>
+                </div> */}
             </div>
         </>
     )
