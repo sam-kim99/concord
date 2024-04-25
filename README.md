@@ -1,24 +1,31 @@
-# README
+# Concord
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### [Live Demo](https://concord-dn4r.onrender.com/)
 
-Things you may want to cover:
+Concord is a Discord clone built using React in the front-end and Rails in the backend. It provides a platform for users to communicate via servers, channels, and messages, with full CRUD functionality for each component.
 
-* Ruby version
+You can click the Live Demo link to be redirected to a working version of this project. There will be two buttons on the Splash page that will redirect you to the Login/Register page (Get Started With Concord, Login). From there, you can choose to login, register, or use one of the two demo accounts to explore further.
 
-* System dependencies
+![SplashPage](frontend/src/assets/splash-final.png)
 
-* Configuration
+## Features
 
-* Database creation
+To get started, users must be signed in. You can get started as one of two demo users!
 
-* Database initialization
+![LoginPage](frontend/src/assets/loginpic.png)
 
-* How to run the test suite
+1. **Servers:** On the home page, users will be presented with a list of servers they own or are members of. By clicking the green "+" icon, users can create new servers and assign unique names to them. Server management options, such as editing or deleting, are accessible to server owners via the server's dropdown menu. Additionally, users have the ability to invite others to become members of these servers.
 
-* Services (job queues, cache servers, search engines, etc.)
+<!-- ![Placeholder]() -->
 
-* Deployment instructions
+2. **Channels:** Every server includes a default #general channel, where users can exchange messages and interact. Server owners can add new text channels by clicking on "TEXT CHANNELS +". Hovering over a channel name displays two icons, enabling users to edit the channel's name and delete any channel except for the #general channel.
 
-* ...
+<!-- ![Placeholder]() -->
+
+3. **Messages:** All users that are members of a server will have the option to send messages inside it's text channels. Users can also see two icons when hovering their own messages. These icons give users the ability to edit and delete their messages. When sending messages, users can fill in the text field that lives at the bottom of the screen and press "Enter" to send.
+
+### Future Implementations
+- WebSockets for instant-messaging
+- Ability to add and delete friends
+- Direct-messaging between friends
+- Ability to invite other members to a server
