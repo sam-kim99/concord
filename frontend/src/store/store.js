@@ -1,5 +1,5 @@
 import { thunk } from 'redux-thunk';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import sessionReducer from './sessionReducer';
 import serversReducer from './serverReducer';
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
 });
 
 const configureStore = ( initialState = {} ) => (
-    createStore(rootReducer, initialState, applyMiddleware(thunk, logger))
+    createStore(rootReducer, initialState, applyMiddleware(thunk))
 );
 
 export default configureStore;
