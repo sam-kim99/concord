@@ -66,32 +66,6 @@ const Channels = () => {
                     </li>
                     {channelsArray.map(channel => (
                         <li key={channel.id} className={`channel-container-list ${activeLink === channel.id ? 'active' : ''}`} 
-                            onClick={() => setActiveLink(channel.id)}
-                        >
-                            <div className='channel-container'>
-                                <Link key={channel.id} to={`/channels/${serverId}/${channel.id}`} className='channel'>
-                                    <div className='channel-hashtag'>
-                                        <img className="channel-icons" src={ChannelHashtag} alt="hashtag"/>
-                                    </div>
-                                    <div className='channel-name'>
-                                        {channel.name}
-                                    </div>
-                                    {!(channel.name === 'general') &&
-                                        <div className='channel-ud'>
-                                            <div className='update-channel'>
-                                                <img src={Gear} onClick={() => {setShowChannelForm(true); setIsUpdateMode(true);}} />
-                                            </div>
-                                            <div className='delete-channel'>
-                                                <img src={TrashCan}  onClick={() => handleDeleteChannel(channel)}/>
-                                            </div>
-                                        </div>
-                                    }
-                                </Link>
-                            </div>
-                        </li>
-                    ))}
-                    {/* {channelsArray.map(channel => (
-                        <li key={channel.id} className={`channel-container-list ${activeLink === channel.id ? 'active' : ''}`} 
                         onClick={() => setActiveLink(channel.id)}
                         >
                             <div className='channel-container'>
@@ -115,7 +89,7 @@ const Channels = () => {
                                 </Link>
                             </div>
                         </li>
-                    ))} */}
+                    ))}
                 </ul>
             </div>
             {showChannelForm && 
