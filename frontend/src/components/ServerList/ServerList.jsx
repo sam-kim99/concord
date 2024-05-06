@@ -7,34 +7,34 @@ import ServerForm from '../ServerForm/ServerForm';
 import "./ServerList.css";
 import { fetchChannels } from '../../store/channelReducer';
 
-const ServerList = props => {
+const ServerList = () => {
     const dispatch = useDispatch();
     const { serverId } = useParams();
     const sessionUser = useSelector(state => state.session?.username);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        if (sessionUser) dispatch(fetchServers())
-    }, [sessionUser])
+        if (sessionUser) {
+            dispatch(fetchServers())
+        }
+    }, [sessionUser, dispatch]);
 
     useEffect(() => {
-        if (serverId) dispatch(fetchChannels(serverId))
-    }, [serverId])
+        if (serverId) {
+            dispatch(fetchChannels(serverId));
+        }
+    }, [serverId, dispatch]);
 
     const servers = useSelector(state => state.server);
-    const channels = useSelector(state => state?.channel);
-    const channelsArray = Object.values(channels);
-
     const serversArray = Object.values(servers);
     const [activeLink, setActiveLink] = useState(0)
-
 
     return (
         <>
             <div className='server channel-me'>
                 <Link to={'/channels/@me'} className={`link ${activeLink === 0 ? 'active' : ''}`} 
                 onClick={() => setActiveLink(0)}>
-                    <img src={DiscordLogo} />
+                    <img src={DiscordLogo} alt="Discord Logo" />
                 </Link>
             </div>
             <div className='divider'>
@@ -42,8 +42,9 @@ const ServerList = props => {
             </div>
             {serversArray.map(server => (
                 <div key={server.id} className='server'>
-                    <Link key={server.id} to={`/channels/${server.id}`} 
-                    className={`link ${activeLink === server.id ? 'active' : ''}`} onClick={() => setActiveLink(server.id)}>
+                    <Link to={`/channels/${server.id}/${server.channels[0]}`} 
+                        className={`link ${activeLink === server.id ? 'active' : ''}`} 
+                        onClick={() => setActiveLink(server.id)}>
                         {server.name.charAt(0)}
                     </Link>
                 </div>
@@ -56,5 +57,3 @@ const ServerList = props => {
 }
 
 export default ServerList;
-
-

@@ -18,9 +18,13 @@ const Channels = () => {
 
     const channels = useSelector(state => state.channel);
     const channelsArray = Object.values(channels);
-    const [activeLink , setActiveLink] = useState(0);
-    const [isUpdateMode, setIsUpdateMode] = useState(false);
+    // console.log(channelsArray[0].id)
+    const [activeLink , setActiveLink] = useState(() => {
+        const generalChannel = channelsArray.find(channel => channel.name === 'general');
+        return generalChannel ? generalChannel.id : null;
+    });
 
+    const [isUpdateMode, setIsUpdateMode] = useState(false);
     const [showChannelForm, setShowChannelForm] = useState(false);
 
     const isOwner = (sessionId === ownerId);
@@ -62,7 +66,7 @@ const Channels = () => {
                     </li>
                     {channelsArray.map(channel => (
                         <li key={channel.id} className={`channel-container-list ${activeLink === channel.id ? 'active' : ''}`} 
-                        onClick={() => setActiveLink(channel.id)}
+                            onClick={() => setActiveLink(channel.id)}
                         >
                             <div className='channel-container'>
                                 <Link key={channel.id} to={`/channels/${serverId}/${channel.id}`} className='channel'>
@@ -86,6 +90,32 @@ const Channels = () => {
                             </div>
                         </li>
                     ))}
+                    {/* {channelsArray.map(channel => (
+                        <li key={channel.id} className={`channel-container-list ${activeLink === channel.id ? 'active' : ''}`} 
+                        onClick={() => setActiveLink(channel.id)}
+                        >
+                            <div className='channel-container'>
+                                <Link key={channel.id} to={`/channels/${serverId}/${channel.id}`} className='channel'>
+                                    <div className='channel-hashtag'>
+                                        <img className="channel-icons" src={ChannelHashtag} alt="hashtag"/>
+                                    </div>
+                                    <div className='channel-name'>
+                                        {channel.name}
+                                    </div>
+                                    {!(channel.name === 'general') &&
+                                        <div className='channel-ud'>
+                                            <div className='update-channel'>
+                                                <img src={Gear} onClick={() => {setShowChannelForm(true); setIsUpdateMode(true);}} />
+                                            </div>
+                                            <div className='delete-channel'>
+                                                <img src={TrashCan}  onClick={() => handleDeleteChannel(channel)}/>
+                                            </div>
+                                        </div>
+                                    }
+                                </Link>
+                            </div>
+                        </li>
+                    ))} */}
                 </ul>
             </div>
             {showChannelForm && 

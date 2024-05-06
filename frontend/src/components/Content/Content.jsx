@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { createMessage, destroyMessage, fetchMessages, updateMessage } from '../../store/messageReducer';
@@ -19,6 +19,14 @@ const Content = () => {
     const [message, setMessage] = useState({ content: '', user_id: sessionUser, channel_id: channelId });
     const [editingId, setEditingId] = useState(null);
     const [editContent, setEditContent] = useState('');
+
+    const editInputRef = useRef(null);
+
+    useEffect(() => {
+        if (editingId && editInputRef.current) {
+          editInputRef.current.focus();
+        }
+      }, [editingId]);
 
     useEffect(() => {
         if (channelId) dispatch(fetchMessages(channelId));
@@ -100,6 +108,7 @@ const Content = () => {
                                                                 {editingId === message.id ? (
                                                                     <input type="text"
                                                                         className="edit-input"
+                                                                        ref={editInputRef}
                                                                         value={editContent}
                                                                         onChange={(e) => setEditContent(e.target.value)}
                                                                         onBlur={(e) => handleUpdate(e, message.id)}
