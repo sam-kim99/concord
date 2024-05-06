@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchServers } from "../../store/serverReducer";
 import DiscordLogo from "../../assets/discordicon.svg";
 import ServerForm from '../ServerForm/ServerForm';
 import "./ServerList.css";
+import { fetchChannels } from '../../store/channelReducer';
 
 const ServerList = props => {
     const dispatch = useDispatch();
+    const { serverId } = useParams();
     const sessionUser = useSelector(state => state.session?.username);
     const [showModal, setShowModal] = useState(false);
 
@@ -15,8 +17,13 @@ const ServerList = props => {
         if (sessionUser) dispatch(fetchServers())
     }, [sessionUser])
 
+    useEffect(() => {
+        if (serverId) dispatch(fetchChannels(serverId))
+    }, [serverId])
 
     const servers = useSelector(state => state.server);
+    const channels = useSelector(state => state?.channel);
+    const channelsArray = Object.values(channels);
 
     const serversArray = Object.values(servers);
     const [activeLink, setActiveLink] = useState(0)
@@ -49,3 +56,5 @@ const ServerList = props => {
 }
 
 export default ServerList;
+
+

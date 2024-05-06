@@ -24,10 +24,10 @@ const ServerForm = ({ setShowModal, isUpdating }) => {
     })
 
     useEffect(() => {
-        if (currentServer) {
+        if (isUpdating && currentServer && currentServer.name !== server.name) {
             setServer({ ...server, name: currentServer.name });
         }
-    }, [currentServer]);
+    }, [currentServer, isUpdating, dispatch]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

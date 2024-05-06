@@ -3,7 +3,7 @@ import SplashBckgnd from '../../assets/bg.png'
 import NavBar from '../NavBar/NavBar'
 import './Splash.css'
 
-const Splash = props => {
+const Splash = () => {
     return (
         <>
             <div className="splash-page">

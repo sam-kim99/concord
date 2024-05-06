@@ -4,6 +4,7 @@
     height: 242px;
     overflow: hidden;
     border-radius: 12px;
+    cursor: default;
 }
 
 .channel-header {
@@ -134,4 +135,10 @@
     min-height: 38px;
     font-family: 'gg sans medium';
     font-size: 16px;
+}
+
+.channel-submit:disabled {
+    background-color: hsl(235 calc( 1 * 85.6%) 64.7% / 1);;
+    cursor: not-allowed; 
+    opacity: 0.6; 
 }

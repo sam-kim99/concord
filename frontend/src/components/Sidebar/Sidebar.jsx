@@ -17,6 +17,9 @@ import './Sidebar.css'
 const Sidebar = props => {
     const dispatch = useDispatch();
     const { serverId } = useParams();
+    const sessionId = useSelector(state => state.session?.id);
+    const ownerId = useSelector(state => state.server[serverId]?.ownerId)
+    const isOwner = (sessionId === ownerId);
     
     const sessionUser = useSelector(state => state.session?.username);
     const serverName = useSelector(state => state.server[serverId]?.name);
@@ -57,45 +60,53 @@ const Sidebar = props => {
             {showDropdown && (
                     <div className="dropdown-menu">
                         <div className="dropdown-contents">
-                            <div className="dropdown-component-container" onClick={() => setShowModal(true)}>
-                                <div className="inner-text">
-                                    <p>Edit Server</p>
+                                {isOwner &&
+                                    <div>
+                                        <div className="dropdown-component-container" onClick={() => setShowModal(true)}>
+                                            <div className="inner-text">
+                                                <p>Edit Server</p>
+                                            </div>
+                                            <div className="dropdown-img">
+                                                <img src={EditGear}/>
+                                            </div>
+                                        </div>
+                                        <div id="channel-creator" className="dropdown-component-container" onClick={() => setShowChannelForm(true)}>
+                                            <div className="inner-text">
+                                                <p>Create Channel</p>
+                                            </div>
+                                            <div className="dropdown-img">
+                                                <img src={CreateChannel}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            {!isOwner &&
+                                <div className="dropdown-component-container" >
+                                    <div className="inner-text">
+                                        <p>Leave Server</p>
+                                    </div>
+                                    <div className="dropdown-img">
+                                        <img src={DoorClose}/>
+                                    </div>
                                 </div>
-                                <div className="dropdown-img">
-                                    <img src={EditGear}/>
-                                </div>
-                            </div>
-                            <div id="channel-creator" className="dropdown-component-container" onClick={() => setShowChannelForm(true)}>
-                                <div className="inner-text">
-                                    <p>Create Channel</p>
-                                </div>
-                                <div className="dropdown-img">
-                                    <img src={CreateChannel}/>
-                                </div>
-                            </div>
-                            <div className="dropdown-component-container" >
-                                <div className="inner-text">
-                                    <p>Leave Server</p>
-                                </div>
-                                <div className="dropdown-img">
-                                    <img src={DoorClose}/>
-                                </div>
-                            </div>
+                            }
                             {showModal && <div className='overlay' onClick={() => setShowModal(false)}></div>}
                             {showModal && <div className='new-server-container'><ServerForm setShowModal={setShowModal} isUpdating={true}/></div>}
-                            <div className="dropdown-component-container" id="delete-server" onClick={() => dispatch(destroyServer(serverId))}>
-                                <div className="inner-text">
-                                    <p>Delete Server</p>
+                            {isOwner &&
+                                <div className="dropdown-component-container" id="delete-server" onClick={() => dispatch(destroyServer(serverId))}>
+                                    <div className="inner-text">
+                                        <p>Delete Server</p>
+                                    </div>
+                                    <div id="delete-server-img" className="dropdown-img">
+                                        <img src={RedTrash}/>
+                                    </div>
                                 </div>
-                                <div id="delete-server-img" className="dropdown-img">
-                                    <img src={RedTrash}/>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
             )}
             {showChannelForm && <div className='overlay' onClick={() => setShowChannelForm(false)}></div>}
-            {showChannelForm && <div className='new-server-container'><ChannelForm setShowModal={setShowModal}/></div>}
+            {showChannelForm && <div className='new-server-container'><ChannelForm setShowChannelForm={setShowChannelForm}/></div>}
 
 
             <div className="user-info-container">

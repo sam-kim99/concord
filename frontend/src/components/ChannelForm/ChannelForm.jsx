@@ -6,7 +6,7 @@ import ChannelHashtag from "../../assets/channel.png";
 import CloseButton from "../../assets/closebutton.svg";
 import './ChannelForm.css';
 
-const ChannelForm = ({ setShowModal, isUpdating }) => {
+const ChannelForm = ({ setShowChannelForm, isUpdating }) => {
     const dispatch = useDispatch();
     const { serverId, channelId } = useParams();
     const formRef = useRef();
@@ -33,14 +33,15 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         try {
             let dispatchPromise;
             if (isUpdating) {
                 dispatchPromise = dispatch(updateChannel({ ...currentChannel, name: channelName }));
             } else {
-                dispatchPromise = dispatch(createChannel({ id: channelId, name: channelName, server_id: serverId }));
+                dispatchPromise = dispatch(createChannel({ id: channelId, name: channelName, serverId: serverId }));
             }
-            dispatchPromise.then(() => setShowModal(false))
+            dispatchPromise.then(() => setShowChannelForm(false))
                            .catch((error) => {
                                if (error.response && error.response.data.errors) {
                                    setErrors(error.response.data.errors);
@@ -53,6 +54,10 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
         }
     }
     
+    const handleClose = (e) => {
+        e.stopPropagation();
+        setShowChannelForm(false);
+    }
 
     return (
         <>
@@ -64,7 +69,7 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
                             <h3>in Text Channels</h3>
                         </div>
                     </div>
-                    <button className="close-button" type="button" onClick={() => setShowModal(false)}>
+                    <button className="close-button" type="button" onClick={handleClose}>
                         <div className="channel-close">
                             <img className="button-img" src={CloseButton} alt="close-button" />
                         </div>
@@ -88,8 +93,8 @@ const ChannelForm = ({ setShowModal, isUpdating }) => {
                     </div>
                 </div>
                 <div className="channel-footer">
-                    <button type="button" className="cancel-button" onClick={() => setShowModal(false)}>Cancel</button>
-                    <button type="submit" className="channel-submit" form="channel-form">{isUpdating ? 'Update Channel' : 'Create Channel'}</button>
+                    <button type="button" className="cancel-button" onClick={handleClose}>Cancel</button>
+                    <button type="submit" className="channel-submit" form="channel-form" disabled={!channelName.trim()}>{isUpdating ? 'Update Channel' : 'Create Channel'}</button>
                 </div>
             </div>
         </>

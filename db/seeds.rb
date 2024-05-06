@@ -162,5 +162,78 @@ ApplicationRecord.transaction do
         server_id: 10
     )
     
+    Channel.create!(
+        name: 'awesome-sauce',
+        server_id: 1
+    )
+    
+    Channel.create!(
+        name: 'anti-react-club',
+        server_id: 2
+    )
+
+    Channel.create!(
+        name: 'anti-rails-club',
+        server_id: 3
+    )
+
+
+    puts "Seeding Messages..."
+
+    Message.create([
+        { content: "Hey everyone!", user_id: 1, channel_id: 1 },
+        { content: "How's it going?", user_id: 2, channel_id: 1 },
+        { content: "Nice weather we're having!", user_id: 3, channel_id: 1 },
+
+        { content: "Welcome to our channel!", user_id: 4, channel_id: 2 },
+        { content: "Excited to chat with everyone!", user_id: 5, channel_id: 2 },
+        { content: "Let's get the conversation started!", user_id: 6, channel_id: 2 },
+
+        { content: "Good morning!", user_id: 7, channel_id: 3 },
+        { content: "Ready for a productive day!", user_id: 8, channel_id: 3 },
+        { content: "Coffee anyone?", user_id: 9, channel_id: 3 },
+
+        { content: "What's up everyone?", user_id: 10, channel_id: 4 },
+        { content: "Any plans for the weekend?", user_id: 11, channel_id: 4 },
+        { content: "Let's have a great day!", user_id: 12, channel_id: 4 },
+
+        { content: "Happy Monday!", user_id: 1, channel_id: 5 },
+        { content: "New week, new goals!", user_id: 2, channel_id: 5 },
+        { content: "Let's crush it this week!", user_id: 3, channel_id: 5 },
+
+        { content: "Hello from channel 6!", user_id: 4, channel_id: 6 },
+        { content: "Any exciting news to share?", user_id: 5, channel_id: 6 },
+        { content: "Let's make this channel lively!", user_id: 6, channel_id: 6 },
+
+        { content: "Greetings!", user_id: 7, channel_id: 7 },
+        { content: "What's on your mind?", user_id: 8, channel_id: 7 },
+        { content: "Let's have some fun discussions!", user_id: 9, channel_id: 7 },
+
+        { content: "Hola amigos!", user_id: 10, channel_id: 8 },
+        { content: "Cómo están?", user_id: 11, channel_id: 8 },
+        { content: "Listos para una buena conversación?", user_id: 12, channel_id: 8 },
+
+        { content: "Hey there!", user_id: 1, channel_id: 9 },
+        { content: "What's new?", user_id: 2, channel_id: 9 },
+        { content: "Let's make this channel vibrant!", user_id: 3, channel_id: 9 },
+
+        { content: "Greetings from channel 10!", user_id: 4, channel_id: 10 },
+        { content: "How's everyone doing today?", user_id: 5, channel_id: 10 },
+        { content: "Let's have some insightful discussions!", user_id: 6, channel_id: 10 },
+
+        { content: "thoughts on bbq?", user_id: 4, channel_id: 11 },
+        { content: "its ok, i prefer sweet and sour!!", user_id: 5, channel_id: 11 },
+        { content: "im a no-saucer", user_id: 6, channel_id: 11 },
+
+        { content: "these front-end developers am i right?!?!", user_id: 1, channel_id: 12 },
+        { content: "so obnoxious", user_id: 4, channel_id: 12 },
+        { content: "react to this!", user_id: 8, channel_id: 12 },
+
+        { content: "these back-end developers am i right?!?!", user_id: 2, channel_id: 13 },
+        { content: "ooo ruby look at me so precious", user_id: 3, channel_id: 13 },
+        { content: "theyre off the rails!!! hahaha...", user_id: 7, channel_id: 13 },
+        { content: "guys???", user_id: 7, channel_id: 13 }
+    ])
+    
     puts "Seeding complete."
 end

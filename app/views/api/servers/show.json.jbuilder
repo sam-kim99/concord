@@ -1,5 +1,5 @@
 json.extract! @server, :id, :name
-json.owner @server.owner_id
+json.ownerId @server.owner_id
 
 json.users @server.users do |user|
   json.extract! user, :id, :username

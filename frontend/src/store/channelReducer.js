@@ -42,7 +42,7 @@ export const createChannel = (channel) => (dispatch) => (
             }
         })
         .then(channel => dispatch(receiveChannel(channel)))
-        .catch(err => console.error(err))
+        .catch(err => console.error('Failed to create channel:', err))
 );
 
 export const updateChannel = (channel) => (dispatch) => (

@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 const NavBar = ({ specialClass }) => {
     const sessionUser = useSelector(state => state.session?.username);
 
-    // Conditionally render the button text and link
     const buttonText = sessionUser ? 'Open Concord' : 'Login';
     const buttonLink = sessionUser ? '/channels/@me' : '/login';
 

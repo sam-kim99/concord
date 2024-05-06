@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { destroyChannel, fetchChannels } from '../../store/channelReducer';
 import { useDispatch, useSelector } from "react-redux";
 import AddChannel from "../../assets/addchannel.png";
@@ -9,20 +9,38 @@ import Gear from "../../assets/gear.png";
 import TrashCan from "../../assets/delete.png";
 import './Channels.css'
 
-const Channels = props => {
+const Channels = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { serverId } = useParams();
+    const sessionId = useSelector(state => state.session?.id);
+    const ownerId = useSelector(state => state.server[serverId]?.ownerId)
 
     const channels = useSelector(state => state.channel);
     const channelsArray = Object.values(channels);
     const [activeLink , setActiveLink] = useState(0);
     const [isUpdateMode, setIsUpdateMode] = useState(false);
 
-    const [showModal, setShowModal] = useState(false);
+    const [showChannelForm, setShowChannelForm] = useState(false);
+
+    const isOwner = (sessionId === ownerId);
 
     useEffect(() => {
         if (serverId) dispatch(fetchChannels(serverId))
-    }, [serverId])
+    }, [serverId, dispatch])
+
+    const handleDeleteChannel = (channel) => {
+        dispatch(destroyChannel(channel))
+            .then(() => {
+                const generalChannelId = channelsArray.find(ch => ch.name === 'general')?.id;
+                if (generalChannelId) {
+                    navigate(`/channels/${serverId}/${generalChannelId}`);
+                }
+            })
+            .catch(error => {
+                console.error("Failed to delete channel:", error);
+            });
+    };
 
     return (
         <>
@@ -33,11 +51,13 @@ const Channels = props => {
                             <div className='text-channels-header-text'>
                                 <h3>TEXT CHANNELS</h3>
                             </div>
-                            <div className='text-channel-add'>
-                                <img className="channel-icons" src={AddChannel} alt="plus sign" 
-                                    onClick={() => {setShowModal(true); setIsUpdateMode(false);}}
-                                />
-                            </div>
+                            {isOwner &&
+                                <div className='text-channel-add'>
+                                    <img className="channel-icons" src={AddChannel} alt="plus sign" 
+                                        onClick={() => {setShowChannelForm(true); setIsUpdateMode(false);}}
+                                    />
+                                </div>
+                            }
                         </div>
                     </li>
                     {channelsArray.map(channel => (
@@ -52,22 +72,28 @@ const Channels = props => {
                                     <div className='channel-name'>
                                         {channel.name}
                                     </div>
-                                    <div className='channel-ud'>
-                                        <div className='update-channel'>
-                                            <img src={Gear} onClick={() => {setShowModal(true); setIsUpdateMode(true);}} />
+                                    {!(channel.name === 'general') &&
+                                        <div className='channel-ud'>
+                                            <div className='update-channel'>
+                                                <img src={Gear} onClick={() => {setShowChannelForm(true); setIsUpdateMode(true);}} />
+                                            </div>
+                                            <div className='delete-channel'>
+                                                <img src={TrashCan}  onClick={() => handleDeleteChannel(channel)}/>
+                                            </div>
                                         </div>
-                                        <div className='delete-channel'>
-                                            <img src={TrashCan}  onClick={() => dispatch(destroyChannel(channel)) }/>
-                                        </div>
-                                    </div>
+                                    }
                                 </Link>
                             </div>
                         </li>
                     ))}
                 </ul>
             </div>
-            {showModal && <div className='overlay' onClick={() => setShowModal(false)}></div>}
-            {showModal && <div className='new-server-container'><ChannelForm setShowModal={setShowModal} isUpdating={isUpdateMode}/></div>}
+            {showChannelForm && 
+                <div className='overlay' onClick={() => setShowChannelForm(false)}></div>}
+            {showChannelForm && 
+                <div className='new-server-container'>
+                    <ChannelForm setShowChannelForm={setShowChannelForm} isUpdating={isUpdateMode}/>
+                </div>}
         </>
     )
 }

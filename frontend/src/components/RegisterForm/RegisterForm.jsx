@@ -6,7 +6,7 @@ import HomeBckgnd from '../../assets/bg.png'
 import './RegisterForm.css'
 
 
-const RegisterForm = props => {
+const RegisterForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -35,7 +35,6 @@ const RegisterForm = props => {
         dispatch(createUser(user))
             .catch(async res => {
                 const data = await res.json()
-
                 if (data) {
                     setErrors({ ...data })
                 }

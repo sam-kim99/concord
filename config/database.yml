@@ -79,4 +79,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: concord_production
+  username: concord
+  password: <%= ENV["CONCORD_DATABASE_PASSWORD"] %>
