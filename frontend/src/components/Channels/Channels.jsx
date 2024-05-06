@@ -18,7 +18,7 @@ const Channels = () => {
 
     const channels = useSelector(state => state.channel);
     const channelsArray = Object.values(channels);
-=
+
     const [activeLink , setActiveLink] = useState(() => {
         const generalChannel = channelsArray.find(channel => channel.name === 'general');
         return generalChannel ? generalChannel.id : null;
