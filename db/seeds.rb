@@ -110,6 +110,13 @@ ApplicationRecord.transaction do
         dm_server: false
     )
 
+    Server.all.each do |server|
+        3.times do
+            user_id = User.all.sample.id
+            Membership.create(user_id: user_id, server_id: server.id, admin: false) unless (user_id == server.owner_id)
+        end
+    end
+
     puts "Seeding Channels..."
 
     Channel.create!(
