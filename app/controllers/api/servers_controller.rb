@@ -16,6 +16,7 @@ class Api::ServersController < ApplicationController
     
         if @server.save
             Channel.create({name: 'general', server_id: @server.id})
+            Membership.create(user_id: current_user.id, server_id: @server.id)
             render 'api/servers/show'
         else
             render json: @server.errors, status: 404
