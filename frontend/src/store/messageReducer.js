@@ -22,7 +22,7 @@ const removeMessage = message => ({
 
 export const fetchMessages = (channelId) => (dispatch) => (
     fetch(`/api/channels/${channelId}/messages`)
-        .then(res => {
+    .then(res => {
             if (res.ok) {
                 return res.json();
             } else {

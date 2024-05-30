@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
     resources :servers do 
       resources :channels
+      resources :memberships
     end
 
     resources :channels, except: [:index] do
@@ -21,6 +22,6 @@ Rails.application.routes.draw do
 
     resources :messages, except: [:index]
     resources :memberships, only: [:create, :destroy]
-    resources :friendships, only: [:create, :destroy]
+    resources :friendships, only: [:create, :destroy, :update]
   end
 end

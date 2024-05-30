@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import ServerList from '../ServerList/ServerList';
 import Sidebar from '../Sidebar/Sidebar';
 import Content from '../Content/Content';
-import ExtraInfo from '../ExtraInfo/ExtraInfo';
+// import ExtraInfo from '../ExtraInfo/ExtraInfo';
 import "./MePage.css"
 
 const MePage = () => {
@@ -28,9 +28,9 @@ const MePage = () => {
                 <div className='content'>
                     <Content />
                 </div>
-                <div className='extra-info'>
+                {/* <div className='extra-info'>
                     <ExtraInfo />
-                </div>
+                </div> */}
             </div>
         </>
     )
