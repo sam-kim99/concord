@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import ServerList from '../ServerList/ServerList';
 import Sidebar from '../Sidebar/Sidebar';
 import Content from '../Content/Content';
-import ExtraInfo from '../ExtraInfo/ExtraInfo';
+// import ExtraInfo from '../ExtraInfo/ExtraInfo';
 import "./MePage.css"
 
 const MePage = () => {
