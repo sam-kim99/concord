@@ -1,3 +1,5 @@
 import {createConsumer} from '@rails/actioncable'
 
-export default createConsumer();
+const consumer = createConsumer('ws://localhost:3000/cable')
+
+export default consumer;
