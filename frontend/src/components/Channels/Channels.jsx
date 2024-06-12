@@ -8,7 +8,6 @@ import ChannelForm from '../ChannelForm/ChannelForm';
 import Gear from "../../assets/gear.png";
 import TrashCan from "../../assets/delete.png";
 import './Channels.css'
-import consumer from '../../../utils/consumer';
 
 const Channels = () => {
     const dispatch = useDispatch();
@@ -31,7 +30,6 @@ const Channels = () => {
     const isOwner = (sessionId === ownerId);
 
     useEffect(() => {
-        consumer.subscriptions.create({ channel: 'ChannelsChannel' });
         if (serverId) {
             dispatch(fetchChannels(serverId))
         }
