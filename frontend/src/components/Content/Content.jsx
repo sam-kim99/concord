@@ -7,6 +7,7 @@ import EditMsg from '../../assets/editmessage.png';
 import TrashCan from "../../assets/deleteserver.png";
 import './Content.css';
 import { deleteMessage } from '../../utils/messageApiUtils';
+import consumer from '../../../utils/consumer';
 
 const Content = () => {
     const dispatch = useDispatch();
@@ -29,6 +30,10 @@ const Content = () => {
       }, [editingId]);
 
     useEffect(() => {
+        consumer.subscriptions.create({ 
+            channel: 'ChannelsChannel',
+            channelId
+        })
         if (channelId) dispatch(fetchMessages(channelId));
     }, [channelId, dispatch]);
 
