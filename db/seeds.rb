@@ -104,6 +104,8 @@ ApplicationRecord.transaction do
         dm_server: false
     )
 
+    Membership.create(user_id: 1, server_id: 9, admin: false)
+
     Server.create!(
         name: 'React Fan Club',
         owner_id: 2,
