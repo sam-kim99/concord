@@ -7,7 +7,7 @@ class Api::ServersController < ApplicationController
     end
 
     def index
-        @servers = Server.where(owner_id: current_user.id)
+        @servers = Server.joins(:memberships).where(memberships: { user_id: current_user.id })
         render 'api/servers/index'
     end
 

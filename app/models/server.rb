@@ -13,7 +13,7 @@ class Server < ApplicationRecord
     after_create :add_owner_as_member
     # Associations
     has_many :memberships, dependent: :destroy
-    has_many :users, through: :memberships
+    has_many :members, through: :memberships, source: :user
     has_many :channels, dependent: :destroy
     belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
     has_many :messages, through: :channels
