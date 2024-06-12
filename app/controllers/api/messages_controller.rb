@@ -23,7 +23,16 @@ class Api::MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         if @message.save
-            ChannelsChannel.broadcast_to(@message.channel, 'new_message')
+            ChannelsChannel.broadcast_to(@message.channel, {
+                type: 'RECEIVE_MESSAGE',
+                message: {
+                    id: @message.id,
+                    body: @message.id,
+                    channelId: @message.channel_id,
+                    userId: @message.user_id,
+                    userUsername: @message.user.username
+                }
+            })
             render 'api/messages/show'
         else
             render json: { errors: @message.errors.full_messages }, status: :unprocessable_entity

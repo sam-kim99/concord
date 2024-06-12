@@ -33,7 +33,13 @@ const Content = () => {
         consumer.subscriptions.create({ 
             channel: 'ChannelsChannel',
             channelId
-        })
+        }, 
+        {
+            received(data) {
+                console.log(data)
+            }
+        }
+        )
         if (channelId) dispatch(fetchMessages(channelId));
     }, [channelId, dispatch]);
 
