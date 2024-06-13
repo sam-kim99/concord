@@ -32,7 +32,7 @@ const Content = () => {
     useEffect(() => {
         const sub = consumer.subscriptions.create({ 
             channel: 'ChannelsChannel',
-            channelId
+            channelId: channelId
         }, 
         {
             received(message) {

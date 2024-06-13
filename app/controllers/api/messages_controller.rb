@@ -26,10 +26,9 @@ class Api::MessagesController < ApplicationController
             ChannelsChannel.broadcast_to(@message.channel, {
                 message: {
                     id: @message.id,
-                    body: @message.content,
+                    content: @message.content,
                     channelId: @message.channel_id,
-                    userId: @message.user_id,
-                    userUsername: @message.user.username
+                    userId: @message.user_id
                 }
             })
             render 'api/messages/show'
@@ -63,6 +62,6 @@ class Api::MessagesController < ApplicationController
     end
 
     def message_params
-        params.require(:message).permit(:content, :user_id, :channel_id, :id, :content, :user_username)
+        params.require(:message).permit(:content, :user_id, :channel_id)
     end
 end
