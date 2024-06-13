@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createMessage, destroyMessage, fetchMessages, updateMessage } from '../../store/messageReducer';
+import { createMessage, destroyMessage, fetchMessages, updateMessage, receiveMessage } from '../../store/messageReducer';
 import Hashtag from '../../assets/channel.png';
 import EditMsg from '../../assets/editmessage.png';
 import TrashCan from "../../assets/deleteserver.png";
 import './Content.css';
-import { deleteMessage } from '../../utils/messageApiUtils';
 import consumer from '../../../utils/consumer';
 
 const Content = () => {
@@ -36,7 +35,7 @@ const Content = () => {
         }, 
         {
             received(message) {
-                dispatch(createMessage(message))
+                dispatch(receiveMessage(message.message))
             }
         });
         if (channelId) {
@@ -79,7 +78,7 @@ const Content = () => {
         return date.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
     };
 
-    const DateDivider = ({ date }) => (
+    const DateDivider = ( {date} ) => (
         <div className="new-date-divider"><span>{date}</span></div>
     );
 
@@ -105,12 +104,12 @@ const Content = () => {
                                 <ol className="messages-list">
                                     {messagesArray.map((message) => {
                                         const messageDate = formatDate(message.createdAt);
-                                        const dateDivider = messageDate !== lastDate ? <DateDivider date={messageDate} /> : null;
+                                        const dateDivider = messageDate !== lastDate ? <DateDivider key={`divider-${messageDate}-${message.id}`} date={messageDate} /> : null;
                                         lastDate = messageDate;
                                         return (
                                             <React.Fragment key={message.id}>
                                                 {dateDivider}
-                                                <li className={`message ${message.userId === sessionUser ? "own-message" : ""}`}>
+                                                <li className={`message ${message.userId === sessionUser ? "own-message" : ""}`} key={message.id}>
                                                     <div className="message-wrapper">
                                                         <div className="message-contents">
                                                             <div className="message-time-user">

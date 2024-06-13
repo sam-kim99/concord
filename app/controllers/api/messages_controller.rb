@@ -28,7 +28,10 @@ class Api::MessagesController < ApplicationController
                     id: @message.id,
                     content: @message.content,
                     channelId: @message.channel_id,
-                    userId: @message.user_id
+                    userId: @message.user_id,
+                    createdAt: @message.created_at,
+                    time: @message.created_at.to_time.localtime.strftime('%l:%M %p'),
+                    author: @message.user.username
                 }
             })
             render 'api/messages/show'

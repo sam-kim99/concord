@@ -9,16 +9,15 @@ const receiveMessages = messages => ({
     messages
 });
 
-const receiveMessage = message => ({
+export const receiveMessage = message => ({
     type: RECEIVE_MESSAGE,
     message
 });
-
+    
 const removeMessage = message => ({
     type: REMOVE_MESSAGE,
     message
 });
-
 
 export const fetchMessages = (channelId) => (dispatch) => (
     fetch(`/api/channels/${channelId}/messages`)
