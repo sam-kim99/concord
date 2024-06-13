@@ -21,6 +21,7 @@ const Content = () => {
     const [editContent, setEditContent] = useState('');
 
     const editInputRef = useRef(null);
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
         if (editingId && editInputRef.current) {
@@ -35,20 +36,29 @@ const Content = () => {
         }, 
         {
             received(message) {
-                dispatch(receiveMessage(message.message))
+                dispatch(receiveMessage(message.message));
+                scrollToBottom();
             }
         });
         if (channelId) {
             dispatch(fetchMessages(channelId));
+            scrollToBottom();
         }
         return () => consumer.subscriptions.remove(sub);
     }, [channelId, dispatch]);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messagesArray]);
 
     const handleSubmit = e => {
         e.preventDefault();
         if (!message.content.trim()) return;
         dispatch(createMessage(message))
-            .then(() => setMessage({ ...message, content: '' }))
+            .then(() => {
+                setMessage({ ...message, content: '' });
+                scrollToBottom();
+            })
             .catch(async res => {
                 let data = await res.json();
                 if (data.errors) console.error(data.errors);
@@ -81,6 +91,12 @@ const Content = () => {
     const DateDivider = ( {date} ) => (
         <div className="new-date-divider"><span>{date}</span></div>
     );
+
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     let lastDate = null;
 
@@ -148,6 +164,7 @@ const Content = () => {
                                             </React.Fragment>
                                         );
                                     })}
+                                    <div ref={messagesEndRef} />
                                 </ol>
                             </div>
                         </div>
