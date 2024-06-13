@@ -30,17 +30,19 @@ const Content = () => {
       }, [editingId]);
 
     useEffect(() => {
-        consumer.subscriptions.create({ 
+        const sub = consumer.subscriptions.create({ 
             channel: 'ChannelsChannel',
             channelId
         }, 
         {
-            received(data) {
-                console.log(data)
+            received(message) {
+                dispatch(createMessage(message))
             }
+        });
+        if (channelId) {
+            dispatch(fetchMessages(channelId));
         }
-        )
-        if (channelId) dispatch(fetchMessages(channelId));
+        return () => consumer.subscriptions.remove(sub);
     }, [channelId, dispatch]);
 
     const handleSubmit = e => {
