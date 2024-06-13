@@ -24,7 +24,6 @@ class Api::MessagesController < ApplicationController
         @message = Message.new(message_params)
         if @message.save
             ChannelsChannel.broadcast_to(@message.channel, {
-                type: 'RECEIVE_MESSAGE',
                 message: {
                     id: @message.id,
                     body: @message.id,
