@@ -22,7 +22,7 @@ To get started, users must be signed in. You can get started as one of two demo 
 
 <!-- ![Placeholder]() -->
 
-3. **Messages:** All users that are members of a server will have the option to send messages inside it's text channels, taking advantage of WebSockets which allows users to communicate in real time. Users can also see two icons when hovering their own messages. These icons give users the ability to edit and delete their messages. When sending messages, users can fill in the text field that lives at the bottom of the screen and press "Enter" to send.
+3. **Messages w/ WebSockets:** All users that are members of a server will have the option to send messages inside it's text channels, taking advantage of WebSockets which allows users to communicate in real time. Users can also see two icons when hovering their own messages. These icons give users the ability to edit and delete their messages. When sending messages, users can fill in the text field that lives at the bottom of the screen and press "Enter" to send.
 
 ### Future Implementations
 - Ability to add and delete friends
