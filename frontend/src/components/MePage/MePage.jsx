@@ -99,9 +99,11 @@ const MePage = () => {
             </div>
             <div className='sidebar me-sidebar'>
                 <div className='top-bar me-top-bar'>
-                    <div className='top-bar-header'>
-                        <div className='server-name'>
-                            <h1>Friends</h1>
+                    <div className='top-bar-dropdown me-top-bar-dropdown'>
+                        <div className='top-bar-header'>
+                            <div className='server-name'>
+                                <h1>Friends</h1>
+                            </div>
                         </div>
                     </div>
                     <div className='me-dm-section'>

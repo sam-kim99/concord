@@ -20,17 +20,8 @@
     font-family: 'gg sans';
 }
 
-.me-top-bar {
-    padding-top: 0;
-}
-
-.me-top-bar .top-bar-header {
+.me-top-bar-dropdown {
     cursor: default;
-    padding: 12px 16px;
-    box-sizing: border-box;
-    box-shadow: 0 1px 0 hsl(0 calc( 1 * 0%) 0.8% / 0.2),
-                0 1.5px 0 hsl(240 calc( 1 * 7.7%) 2.5% / 0.05),
-                0 2px 0 hsl(0 calc( 1 * 0%) 0.8% / 0.05);
 }
 
 .me-top-bar .server-name h1 {
