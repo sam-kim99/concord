@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createMessage, destroyMessage, fetchMessages, updateMessage, receiveMessage } from '../../store/messageReducer';
+import { createMessage, destroyMessage, fetchMessages, updateMessage, receiveMessage, removeMessage } from '../../store/messageReducer';
 import Hashtag from '../../assets/channel.png';
 import EditMsg from '../../assets/editmessage.png';
 import TrashCan from "../../assets/deleteserver.png";
@@ -35,9 +35,13 @@ const Content = () => {
             channelId: channelId
         }, 
         {
-            received(message) {
-                dispatch(receiveMessage(message.message));
-                scrollToBottom();
+            received(data) {
+                if (data.removed) {
+                    dispatch(removeMessage({ id: data.removed.id }));
+                } else if (data.message) {
+                    dispatch(receiveMessage(data.message));
+                    scrollToBottom();
+                }
             }
         });
         if (channelId) {

@@ -1,52 +1,75 @@
 class Api::FriendshipsController < ApplicationController
+  before_action :require_logged_in
   before_action :set_friendship, only: [:show, :update, :destroy]
 
   def show
-      if @friendship
-          render 'api/friendships/show'
-      else
-          render json: {errors: 'Not found'}, status: 404
-      end
+    unless [@friendship.user_id, @friendship.friend_id].include?(current_user.id)
+      render json: { errors: 'Not authorized' }, status: 403
+      return
+    end
+    render 'api/friendships/show'
   end
 
   def create
     @friendship = Friendship.new(friendship_params)
+    @friendship.user_id ||= current_user.id
+
+    unless @friendship.user_id == current_user.id
+      render json: { errors: 'Cannot create a friendship for another user' }, status: 403
+      return
+    end
 
     if @friendship.save
       render 'api/friendships/show'
     else
-      render json: {errors: "Cannot be processed"}, status: 422
+      render json: { errors: @friendship.errors.full_messages }, status: 422
+    end
+  end
+
+  def update
+    unless @friendship.friend_id == current_user.id
+      render json: { errors: 'Only the recipient can respond to this request' }, status: 403
+      return
+    end
+
+    if @friendship.update(status: params.dig(:friendship, :status) || params[:status])
+      if @friendship.status == 'accepted'
+        Friendship.find_or_create_by(
+          user_id: @friendship.friend_id,
+          friend_id: @friendship.user_id
+        ) { |f| f.status = 'accepted' }
+      end
+      render 'api/friendships/show'
+    else
+      render json: { errors: @friendship.errors.full_messages }, status: 422
     end
   end
 
   def destroy
-      def destroy
-          friendship1 = Friendship.where(user_id: params[:user_id]).find_by(friend_id: params[:friend_id])
-          friendship2 = Friendship.where(user_id: params[:friend_id]).find_by(friend_id: params[:user_id])
-      
-          if friendship1
-              friendship1.destroy
-          end
-      
-          if friendship2
-              friendship2.destroy
-          end
-      
-          if friendship1 || friendship2
-              @friendship = friendship1 || friendship2
-              render 'api/friendships/show'
-          else
-              render json: {errors: 'Not Found'}, status: 404
-          end
-      end
+    unless [@friendship.user_id, @friendship.friend_id].include?(current_user.id)
+      render json: { errors: 'Not authorized' }, status: 403
+      return
+    end
+
+    reverse = Friendship.find_by(
+      user_id: @friendship.friend_id,
+      friend_id: @friendship.user_id
+    )
+
+    @friendship.destroy
+    reverse&.destroy
+
+    render 'api/friendships/show'
   end
 
   private
-    def set_friendship
-      @friendship = Friendship.find(params[:id])
-    end
 
-    def friendship_params
-      params.require(:friendship).permit(:user_id, :friend_id, :status)
-    end
+  def set_friendship
+    @friendship = Friendship.find_by(id: params[:id])
+    render(json: { errors: 'Not found' }, status: 404) and return unless @friendship
+  end
+
+  def friendship_params
+    params.require(:friendship).permit(:user_id, :friend_id, :status)
+  end
 end

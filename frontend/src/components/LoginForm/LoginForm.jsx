@@ -38,25 +38,19 @@ const LoginForm = () => {
             })
     }
 
-    const handleDemo = async (e) => {
+    const handleDemo = (e) => {
         e.preventDefault();
-        let demoUser;
-        if (e.target.value === '1') {
-            demoUser = {
-                credential: 'SuperCoolGuy331',
-                password: 'password!!!'
-            };
-        } else {
-            demoUser = {
-                credential: 'ketchup@test.com',
-                password: 'must@rdreallysucks'
-            };
-        }
-        try {
-            await dispatch(loginUser(demoUser));
-        } catch (error) {
-            setErrors(error.errors);
-        }
+        const demoUser = e.target.value === '1'
+            ? { credential: 'SuperCoolGuy331', password: 'password!!!' }
+            : { credential: 'ketchup@test.com', password: 'must@rdreallysucks' };
+
+        dispatch(loginUser(demoUser))
+            .catch(async res => {
+                const data = await res.json();
+                if (data.errors) {
+                    setErrors(data);
+                }
+            });
     };
 
 

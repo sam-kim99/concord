@@ -1,20 +1,18 @@
 class Api::ChannelsController < ApplicationController
     wrap_parameters include: Channel.attribute_names + ['serverId']
-    before_action :set_server, only: [:create]
+    before_action :require_logged_in
+    before_action :set_server, only: [:index, :create]
     before_action :set_channel, only: [:show, :update, :destroy]
+    before_action :verify_server_member, only: [:index, :show]
     before_action :verify_server_ownership, only: [:create, :update, :destroy]
 
     def index
-        @server = Server.find_by(id: params[:server_id])
+        @channels = @server.channels
         render 'api/channels/index'
     end
 
     def show
-        if @channel
-            render 'api/channels/show'
-        else
-            render json: { errors: 'Channel not found' }, status: 404
-        end
+        render 'api/channels/show'
     end
 
     def create
@@ -27,7 +25,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def update
-        if @channel.update(channel_params)
+        if @channel.update(channel_params.slice(:name))
             render 'api/channels/show'
         else
             render json: { errors: 'Channel update failed' }, status: :unprocessable_entity
@@ -47,22 +45,33 @@ class Api::ChannelsController < ApplicationController
 
     def set_server
         @server = Server.find_by(id: params[:server_id] || channel_params[:server_id])
-        if @server.nil?
-          render json: { errors: 'Server not found' }, status: :not_found
-          return
+        unless @server
+            render json: { errors: 'Server not found' }, status: :not_found
         end
-      end
+    end
 
     def set_channel
         @channel = Channel.find_by(id: params[:id])
-        @server = @channel.server if @channel
+        unless @channel
+            render json: { errors: 'Channel not found' }, status: :not_found
+            return
+        end
+        @server = @channel.server
     end
 
     def channel_params
         params.require(:channel).permit(:name, :server_id)
     end
 
+    def verify_server_member
+        return unless @server
+        unless Membership.exists?(server_id: @server.id, user_id: current_user.id)
+            render json: { errors: 'Not a member of this server' }, status: :forbidden
+        end
+    end
+
     def verify_server_ownership
+        return unless @server
         unless current_user == @server.owner
             render json: { errors: 'You are not authorized to perform this action' }, status: :forbidden
         end
