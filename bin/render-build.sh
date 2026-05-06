@@ -3,5 +3,11 @@
 set -o errexit
 
 bundle install
-rails db:migrate
-rails db:seed
+
+cd frontend
+npm ci
+npm run build
+cd ..
+
+bundle exec rails db:migrate
+bundle exec rails db:seed
