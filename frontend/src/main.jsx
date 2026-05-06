@@ -12,7 +12,13 @@ import { createChannel, destroyChannel, fetchChannels, updateChannel } from './s
 import { createMessage, destroyMessage, fetchMessages, updateMessage } from './store/messageReducer.js';
 
 const initializeApp = () => {
-  const store = configureStore();
+  let storedUser = null;
+  try {
+    storedUser = JSON.parse(sessionStorage.getItem('currentUser')) || null;
+  } catch {
+    storedUser = null;
+  }
+  const store = configureStore({ session: storedUser });
   
   // for testing only
   window.store = store;
