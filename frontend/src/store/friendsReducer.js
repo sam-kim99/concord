@@ -53,6 +53,8 @@ export const destroyFriendship = id => async dispatch => {
     const res = await csrfFetch(`/api/friendships/${id}`, { method: 'DELETE' });
     if (!res.ok) throw res;
     dispatch(removeFriendship(id));
+    // Backend deletes both directions; refetch to clear the reverse row.
+    dispatch(fetchFriendships()).catch(() => {});
 };
 
 export const openDirectMessage = userId => async dispatch => {

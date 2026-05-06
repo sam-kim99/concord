@@ -23,6 +23,7 @@ const Channels = () => {
 
     const [isUpdateMode, setIsUpdateMode] = useState(false);
     const [showChannelForm, setShowChannelForm] = useState(false);
+    const [editingChannelId, setEditingChannelId] = useState(null);
 
     const isOwner = (sessionId === ownerId);
 
@@ -56,8 +57,8 @@ const Channels = () => {
                             </div>
                             {isOwner &&
                                 <div className='text-channel-add'>
-                                    <img className="channel-icons" src={AddChannel} alt="plus sign" 
-                                        onClick={() => {setShowChannelForm(true); setIsUpdateMode(false);}}
+                                    <img className="channel-icons" src={AddChannel} alt="plus sign"
+                                        onClick={() => {setEditingChannelId(null); setShowChannelForm(true); setIsUpdateMode(false);}}
                                     />
                                 </div>
                             }
@@ -77,7 +78,7 @@ const Channels = () => {
                                     {!(channel.name === 'general') &&
                                         <div className='channel-ud'>
                                             <div className='update-channel'>
-                                                <img src={Gear} onClick={(e) => {e.preventDefault(); e.stopPropagation(); setShowChannelForm(true); setIsUpdateMode(true);}} />
+                                                <img src={Gear} onClick={(e) => {e.preventDefault(); e.stopPropagation(); setEditingChannelId(channel.id); setShowChannelForm(true); setIsUpdateMode(true);}} />
                                             </div>
                                             <div className='delete-channel'>
                                                 <img src={TrashCan} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleDeleteChannel(channel);}}/>
@@ -90,11 +91,11 @@ const Channels = () => {
                     ))}
                 </ul>
             </div>
-            {showChannelForm && 
+            {showChannelForm &&
                 <div className='overlay' onClick={() => setShowChannelForm(false)}></div>}
-            {showChannelForm && 
+            {showChannelForm &&
                 <div className='new-server-container'>
-                    <ChannelForm setShowChannelForm={setShowChannelForm} isUpdating={isUpdateMode}/>
+                    <ChannelForm setShowChannelForm={setShowChannelForm} isUpdating={isUpdateMode} targetChannelId={editingChannelId}/>
                 </div>}
         </>
     )

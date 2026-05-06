@@ -6,12 +6,13 @@ import ChannelHashtag from "../../assets/channel.png";
 import CloseButton from "../../assets/closebutton.svg";
 import './ChannelForm.css';
 
-const ChannelForm = ({ setShowChannelForm, isUpdating }) => {
+const ChannelForm = ({ setShowChannelForm, isUpdating, targetChannelId }) => {
     const dispatch = useDispatch();
     const { serverId, channelId } = useParams();
     const formRef = useRef();
 
-    const currentChannel = useSelector(state => state.channel[channelId])
+    const editingId = targetChannelId ?? channelId;
+    const currentChannel = useSelector(state => state.channel[editingId])
 
     const [ channelName, setChannelName ] = useState('');
 
