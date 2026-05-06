@@ -31,3 +31,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore the built frontend bundle — built by Dockerfile / `cd frontend && npm run build`.
+/public/index.html
+/public/assets
+
+# Ignore frontend node_modules.
+/frontend/node_modules

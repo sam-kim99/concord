@@ -17,9 +17,11 @@ ENV RAILS_ENV="production" \
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
-# Install packages needed to build gems
+# Install packages needed to build gems and the frontend bundle
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips pkg-config && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install --no-install-recommends -y nodejs
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -27,8 +29,15 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
+# Install frontend deps (cache layer when package files don't change)
+COPY frontend/package.json frontend/package-lock.json frontend/
+RUN cd frontend && npm ci
+
 # Copy application code
 COPY . .
+
+# Build the React/Vite bundle into public/ (vite.config.js outDir: '../public')
+RUN cd frontend && npm run build
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
