@@ -26,7 +26,7 @@ const ServerList = () => {
     }, [serverId, dispatch]);
 
     const servers = useSelector(state => state.server);
-    const serversArray = Object.values(servers);
+    const serversArray = Object.values(servers).filter(s => !s.dmServer);
     const activeLink = serverId ? Number(serverId) : 0;
 
     return (

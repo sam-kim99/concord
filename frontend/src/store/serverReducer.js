@@ -10,7 +10,7 @@ const receiveServers = servers => ({
     servers
 });
 
-const receiveServer = server => ({
+export const receiveServer = server => ({
     type: RECEIVE_SERVER,
     server
 });

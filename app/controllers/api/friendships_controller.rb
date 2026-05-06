@@ -2,6 +2,13 @@ class Api::FriendshipsController < ApplicationController
   before_action :require_logged_in
   before_action :set_friendship, only: [:show, :update, :destroy]
 
+  def index
+    @friendships = Friendship
+      .where('user_id = :id OR friend_id = :id', id: current_user.id)
+      .includes(:user, :friend)
+    render 'api/friendships/index'
+  end
+
   def show
     unless [@friendship.user_id, @friendship.friend_id].include?(current_user.id)
       render json: { errors: 'Not authorized' }, status: 403

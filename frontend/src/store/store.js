@@ -6,13 +6,15 @@ import serversReducer from './serverReducer';
 import channelsReducer from './channelReducer';
 import messagesReducer from './messageReducer';
 import membersReducer from './membershipsReducer';
+import friendsReducer from './friendsReducer';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     server: serversReducer,
     channel: channelsReducer,
     message: messagesReducer,
-    memberships: membersReducer
+    memberships: membersReducer,
+    friends: friendsReducer
 });
 
 const configureStore = ( initialState = {} ) => (

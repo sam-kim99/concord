@@ -1,7 +1,17 @@
 class Api::UsersController < ApplicationController
     wrap_parameters include: User.attribute_names + ['password']
     before_action :require_logged_out, only: [:create]
-    before_action :require_logged_in, only: [:show]
+    before_action :require_logged_in, only: [:show, :index]
+
+    def index
+        query = params[:q].to_s.strip
+        @users = if query.empty?
+                     User.none
+                 else
+                     User.where('LOWER(username) LIKE ?', "%#{query.downcase}%").limit(20)
+                 end
+        render 'api/users/index'
+    end
 
     def show
         @user = User.includes(:owned_servers).find(params[:id])

@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:show, :create]
+    resources :users, only: [:show, :create, :index]
     resource :session, only: [:show, :create, :destroy]
-    resources :servers do 
+    resources :servers do
       resources :channels
       resources :memberships
     end
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
     resources :messages, except: [:index]
     resources :memberships, only: [:create, :destroy]
-    resources :friendships, only: [:create, :destroy, :update]
+    resources :friendships, only: [:index, :create, :destroy, :update]
+
+    post '/dms/:user_id', to: 'dms#create', as: :dm
   end
 end
