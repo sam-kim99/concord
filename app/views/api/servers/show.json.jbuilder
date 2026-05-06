@@ -1,10 +1,3 @@
-json.extract! @server, :id, :name
-json.ownerId @server.owner_id
-
-json.users @server.users do |user|
-  json.extract! user, :id, :username
-end
-
-json.channels @server.channels do |channel|
-  json.extract! channel, :id, :name
-end
+json.extract! @server, :id, :name, :owner_id, :created_at, :updated_at, :dm_server
+json.channels @server.channels.map(&:id)
+json.members @server.memberships.map(&:user_id)

@@ -1,3 +1,6 @@
+import { csrfFetch } from "../utils/csrfUtils";
+import { REMOVE_SERVER } from "./serverReducer";
+
 export const RECEIVE_MEMBERS = 'members/RECEIVE_MEMBERS';
 export const ADD_MEMBER = 'members/ADD_MEMBER';
 
@@ -22,6 +25,19 @@ export const fetchMembers = (serverId) => (dispatch) => (
         })
         .then(members => dispatch(receiveMembers(members)))
 )
+
+export const leaveServer = (serverId, userId) => async (dispatch) => {
+    const memRes = await fetch(`/api/servers/${serverId}/memberships`);
+    if (!memRes.ok) throw memRes;
+    const memberships = await memRes.json();
+    const mine = memberships.find(m => m.userId === userId);
+    if (!mine) throw new Error('Membership not found');
+
+    const delRes = await csrfFetch(`/api/memberships/${mine.id}`, { method: 'DELETE' });
+    if (!delRes.ok) throw delRes;
+
+    dispatch({ type: REMOVE_SERVER, serverId });
+};
 
 const membersReducer = (state = {}, action) => {
     const nextState = { ...state };

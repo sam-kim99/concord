@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { destroyServer } from "../../store/serverReducer";
+import { leaveServer } from "../../store/membershipsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from '../../store/sessionReducer';
 import ServerForm from "../ServerForm/ServerForm";
@@ -16,10 +17,23 @@ import './Sidebar.css'
 
 const Sidebar = props => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { serverId } = useParams();
     const sessionId = useSelector(state => state.session?.id);
     const ownerId = useSelector(state => state.server[serverId]?.ownerId)
     const isOwner = (sessionId === ownerId);
+
+    const handleLeaveServer = () => {
+        dispatch(leaveServer(serverId, sessionId))
+            .then(() => navigate('/channels/@me'))
+            .catch(err => console.error('Failed to leave server:', err));
+    };
+
+    const handleDestroyServer = () => {
+        dispatch(destroyServer(serverId))
+            .then(() => navigate('/channels/@me'))
+            .catch(err => console.error('Failed to delete server:', err));
+    };
     
     const sessionUser = useSelector(state => state.session?.username);
     const serverName = useSelector(state => state.server[serverId]?.name);
@@ -81,7 +95,7 @@ const Sidebar = props => {
                                     </div>
                                 }
                             {!isOwner &&
-                                <div className="dropdown-component-container" >
+                                <div className="dropdown-component-container" onClick={handleLeaveServer}>
                                     <div className="inner-text">
                                         <p>Leave Server</p>
                                     </div>
@@ -93,7 +107,7 @@ const Sidebar = props => {
                             {showModal && <div className='overlay' onClick={() => setShowModal(false)}></div>}
                             {showModal && <div className='new-server-container'><ServerForm setShowModal={setShowModal} isUpdating={true}/></div>}
                             {isOwner &&
-                                <div className="dropdown-component-container" id="delete-server" onClick={() => dispatch(destroyServer(serverId))}>
+                                <div className="dropdown-component-container" id="delete-server" onClick={handleDestroyServer}>
                                     <div className="inner-text">
                                         <p>Delete Server</p>
                                     </div>

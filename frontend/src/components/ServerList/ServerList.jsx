@@ -27,13 +27,12 @@ const ServerList = () => {
 
     const servers = useSelector(state => state.server);
     const serversArray = Object.values(servers);
-    const [activeLink, setActiveLink] = useState(0)
+    const activeLink = serverId ? Number(serverId) : 0;
 
     return (
         <>
             <div className='server channel-me'>
-                <Link to={'/channels/@me'} className={`link ${activeLink === 0 ? 'active' : ''}`} 
-                onClick={() => setActiveLink(0)}>
+                <Link to={'/channels/@me'} className={`link ${activeLink === 0 ? 'active' : ''}`}>
                     <img src={DiscordLogo} alt="Discord Logo" />
                 </Link>
             </div>
@@ -42,9 +41,8 @@ const ServerList = () => {
             </div>
             {serversArray.map(server => (
                 <div key={server.id} className='server'>
-                    <Link to={`/channels/${server.id}/${server.channels[0]}`} 
-                        className={`link ${activeLink === server.id ? 'active' : ''}`} 
-                        onClick={() => setActiveLink(server.id)}>
+                    <Link to={`/channels/${server.id}/${server.channels[0]}`}
+                        className={`link ${activeLink === server.id ? 'active' : ''}`}>
                         {server.name.charAt(0)}
                     </Link>
                 </div>
